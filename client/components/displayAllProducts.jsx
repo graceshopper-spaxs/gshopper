@@ -1,10 +1,8 @@
 import React from 'react';
 import {displayProduct as DisplayProduct} from './displayProduct';
 
-//This is a component for a single item that will show up on a display of multiple products
+//This is a component to display all products passed down to it.
 export const displayAllProducts = (props) => {
-	//I'm assuming each ingredient from our database has these properties
-  //Have not yet implemeneted keys with id due to limit of dummy data
 	const {ingredients} = props;
   return (
     <div className="displayAllProducts">
