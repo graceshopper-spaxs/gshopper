@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
+import {Main, Login, Signup, UserHome, DisplayAllProducts} from './components'
 import {me} from './store'
 
 /**
@@ -17,6 +17,13 @@ class Routes extends Component {
 
   render () {
     const {isLoggedIn} = this.props
+    const tomato = {
+      image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Bright_red_tomato_and_cross_section02.jpg",
+      name: "tomato",
+      price: 1,
+      serving: "100 grams",
+      calories: 100
+    }
 
     return (
       <Router history={history}>
@@ -35,6 +42,7 @@ class Routes extends Component {
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
           </Switch>
+          <DisplayAllProducts ingredients={[tomato,tomato,tomato]}/>
         </Main>
       </Router>
     )
