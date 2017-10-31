@@ -1,4 +1,3 @@
-
 import { expect } from 'chai'
 import { addItem } from './cart'
 import configureMockStore from 'redux-mock-store'
@@ -40,10 +39,5 @@ describe('Cart Reducer', () => {
             store.dispatch(action)
             expect(store.getState().length).to.be.equal(1)
         })
-    
-
-    // describe('Remove Item', () => {
-    // })
-
     })
 })
