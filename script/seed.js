@@ -10,7 +10,7 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Ingredient} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
@@ -24,8 +24,23 @@ async function seed () {
   ])
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
-  console.log(`seeded ${users.length} users`)
+  
+  const ingredients = await Promise.all([
+    Ingredient.create({name: 'foodone', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'foodtwo', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'foodthree', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'foodfour', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food5', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food6', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food7', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food8', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food9', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food100000', calories: 100,calories_From_Fat: 50, total_Fat: 5, sodium: 50, total_Carbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'})
+  ])
+  
+  console.log(`seeded ${users.length} users,  seeded ${ingredients.length} ingredients`)
   console.log(`seeded successfully`)
+
 }
 
 // Execute the `seed` function
