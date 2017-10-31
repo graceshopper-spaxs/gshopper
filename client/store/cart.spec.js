@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { addItem } from './cart'
+import { addItem, removeItem } from './cart'
 import configureMockStore from 'redux-mock-store'
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import cartReducer from './cart'
@@ -38,6 +38,26 @@ describe('Cart Reducer', () => {
             const action = addItem(item)
             store.dispatch(action)
             expect(store.getState().length).to.be.equal(1)
+        })
+
+        it('updates quantity if item is already in cart', () => {
+            const item = {id:1, quantity: 1, name: 'Banana'}
+            const action = addItem(item)
+            store.dispatch(action)
+            expect(store.getState()[0].quantity).to.be.equal(2)
+        })
+    })
+
+    describe('Remove item', ()=> {
+        const store = createStore(cartReducer)
+        it('removes an item from the cart', () => {
+            const item = {id:1, quantity:1, name: 'Banana'}
+            const addItemAction = addItem(item)
+            const removeItemAction = removeItem(item.id)
+            
+            store.dispatch(addItemAction)
+            store.dispatch(removeItemAction)
+            expect(store.getState().length).to.be.equal(0)
         })
     })
 })

@@ -11,7 +11,7 @@ const defaultCart = []
 //Action Creators
 
 export const addItem = item => ({ type: ADD_ITEM, item })
-export const removeItem = item => ({ type: REMOVE_ITEM, item })
+export const removeItem = id => ({ type: REMOVE_ITEM, id })
 export const updateItem = item => ({ type: UPDATE_ITEM, item })
 
 export default function (state = defaultCart, action) {
