@@ -9,12 +9,12 @@ const GET_INGREDIENTS = 'GET_INGREDIENTS'
 /**
  * INITIAL STATE
  */
-const allIngredients = {}
+const allIngredients = []
 
 /**
  * ACTION CREATORS
  */
-const getIngredients= ingredients => ({type: GET_INGREDIENTS, ingredients})
+const getIngredients = ingredients => ({type: GET_INGREDIENTS, ingredients})
 
 /**
  * THUNK CREATORS
@@ -22,19 +22,18 @@ const getIngredients= ingredients => ({type: GET_INGREDIENTS, ingredients})
 export const fetchIngredients = () =>
   dispatch =>
     axios.get('/api/ingredients')
-      .then(ingredients =>{
-        // console.log("ingredients!!!!!", ingredients);
+    .then(ingredients => {
         return  dispatch(getIngredients(ingredients.data))
       }
     )
-      .catch(err => console.log(err))
+    .catch(err => console.log(err))
 
 
 
 /**
  * REDUCER
  */
-export default function (state =allIngredients, action) {
+export default function (state = allIngredients, action) {
   switch (action.type) {
     case GET_INGREDIENTS:
       return action.ingredients

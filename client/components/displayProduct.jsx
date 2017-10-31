@@ -4,7 +4,7 @@ import React from 'react';
 export const displayProduct = (props) => {
 	//I'm assuming each ingredient from our database has these properties
   //Have not yet implemeneted keys with id due to limit of dummy data
-	const {image, name, price, serving, calories} = props.ingredient;
+	const {image, name, price, servingSize, calories} = props.ingredient;
   return (
     <div className="displayProduct">
       <img className="displayProductImage" src={image} height="82" width="82"/>
@@ -15,7 +15,7 @@ export const displayProduct = (props) => {
       	${price}
       </p>
       <p className="displayProductServing">
-      	{serving} per serving.
+      	{servingSize} grams per serving.
       </p>
       <p className="displayProductCalories">
       	{calories} calories.
