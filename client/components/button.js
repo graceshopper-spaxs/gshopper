@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {addItem, removeItem, updateItem} from ''
+import {addItem, removeItem, updateItem} from '../store'
 
 const smartButton = (props) => {
 
