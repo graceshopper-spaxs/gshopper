@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { addItem, removeItem } from './cart'
+import { addItem, removeItem, updateItem } from './cart'
 import configureMockStore from 'redux-mock-store'
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import cartReducer from './cart'
@@ -13,51 +13,44 @@ describe('Cart Reducer', () => {
     const initialState = []
 
     beforeEach(() => {
-        store = mockStore(initialState)
+        store = createStore(cartReducer)
     })
 
-    afterEach(() => {
-        store.clearActions()
-    })
-
-    describe('Sends Add Item action to Store', () => {
-        it('dispatches the ADD ITEM action', () => {
-            const item = { id: 1, quantity: 1, name: 'Apple' }
-            const action = addItem(item)
-            store.dispatch(action)
-
-            const actions = store.getActions()
-            expect(actions[0].type).to.be.equal('ADD_ITEM')
-        })
-    })
 
     describe('Add item', () => {
-        const store = createStore(cartReducer)
+        
         it('adds an item to the cart', () => {
-            const item = { id: 1, quantity: 1, name: 'Banana' }
-            const action = addItem(item)
+            const action = addItem(1, 2)
             store.dispatch(action)
-            expect(store.getState().length).to.be.equal(1)
+            expect(store.getState()[0].quantity).to.be.equal(2)
         })
 
         it('updates quantity if item is already in cart', () => {
-            const item = {id:1, quantity: 1, name: 'Banana'}
-            const action = addItem(item)
+            const action = addItem(1, 2)
             store.dispatch(action)
-            expect(store.getState()[0].quantity).to.be.equal(2)
+            store.dispatch(action)
+            expect(store.getState()[0].quantity).to.be.equal(4)
         })
     })
 
     describe('Remove item', ()=> {
-        const store = createStore(cartReducer)
         it('removes an item from the cart', () => {
-            const item = {id:1, quantity:1, name: 'Banana'}
-            const addItemAction = addItem(item)
-            const removeItemAction = removeItem(item.id)
-            
+            const addItemAction = addItem(1,2)
+            const removeItemAction = removeItem(1)
             store.dispatch(addItemAction)
             store.dispatch(removeItemAction)
             expect(store.getState().length).to.be.equal(0)
+        })
+    })
+
+    describe('Update item', ()=> {
+        it('Updates the quantity of an item from the cart', () => {
+            const addItemAction = addItem(1,2)
+            const updateItemAction = updateItem(1,7)
+            store.dispatch(addItemAction)
+            expect(store.getState()[0].quantity).to.be.equal(2)
+            store.dispatch(updateItemAction)
+            expect(store.getState()[0].quantity).to.be.equal(7)
         })
     })
 })
