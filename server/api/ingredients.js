@@ -9,8 +9,16 @@ router.get('/', (req, res, next) => {
       // explicitly select only the id and email fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['name', 'calories', 'price', 'image', 'servingSize']
+      attributes: ['id','name', 'calories', 'price', 'image', 'servingSize']
     })
       .then(ingredients => res.json(ingredients))
       .catch(next)
   })
+
+
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Ingredient.findById(id)
+  .then(Ingredient => res.json(Ingredient))
+  .catch(next)
+})

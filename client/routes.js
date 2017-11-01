@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome, DisplayAllProducts} from './components'
+import DisplaySingleProduct from './components/DisplaySingleProduct'
 import { me, fetchIngredients } from './store'
 
 /**
@@ -17,15 +18,6 @@ class Routes extends Component {
 
   render () {
     const {isLoggedIn, allIngredients} = this.props
-    const tomato = {
-      image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Bright_red_tomato_and_cross_section02.jpg",
-      name: "tomato",
-      price: 1,
-      serving: "100 grams",
-      calories: 100
-    }
-
-    console.log("all ingredients", this.props)
 
     return (
       <Router history={history}>
@@ -34,6 +26,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/ingredients/:id" component={DisplaySingleProduct} />
             {
               isLoggedIn &&
                 <Switch>
@@ -43,8 +36,8 @@ class Routes extends Component {
             }
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
-          </Switch>
-          {allIngredients && <DisplayAllProducts ingredients={allIngredients}/>}
+            </Switch>
+            {allIngredients && <DisplayAllProducts ingredients={allIngredients}/>}
         </Main>
       </Router>
     )
@@ -66,7 +59,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
-      console.log("fffffffffffff")
       dispatch(fetchIngredients())
     }
   }
