@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import DisplaySingleProduct from "./DisplaySingleProduct"
+import AddButton from "./button"
 
 //This is a component for a single item that will show up on a display of multiple products
 export const displayProduct = (props) => {
@@ -24,6 +25,7 @@ export const displayProduct = (props) => {
       <p className="displayProductCalories">
       	{calories} calories.
       </p>
+      <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} item_id={id} quantity={1}/>
     </div>
   )
 }
