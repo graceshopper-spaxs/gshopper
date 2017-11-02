@@ -22,11 +22,11 @@ const mapDispatch = (dispatch) => {
   	handleSubmit (buttonType, item_id, quantity) {
   	    switch (buttonType) {
 	        case "ADD_ITEM":
-				dispatch(addItem(item_id, quantity));
-
+                dispatch(addItem(item_id, quantity));
+                break
 	        case "REMOVE_ITEM":
 	        	dispatch(removeItem(item_id));
-
+                break
 	        case "UPDATE_ITEM":
 	        	dispatch(updateItem(item_id, quantity));           
     	}
