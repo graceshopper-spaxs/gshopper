@@ -9,7 +9,10 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
     let add = req.body;
     let sessionCart = req.session.cart;
-    req.session.cart = sessionCartQuantityAdd(sessionCart, add);
+    
+    const foundItem = sessionCart.find(onCartItem => onCartItem.item_id === add.item_id)
+    if (foundItem) req.session.cart = sessionCartQuantityAdd(sessionCart, add);
+    else req.session.cart = [...sessionCart, add];
     res.json(req.session.cart);
 });
 
