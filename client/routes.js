@@ -17,15 +17,6 @@ class Routes extends Component {
 
   render () {
     const {isLoggedIn, allIngredients} = this.props
-    const tomato = {
-      image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Bright_red_tomato_and_cross_section02.jpg",
-      name: "tomato",
-      price: 1,
-      serving: "100 grams",
-      calories: 100
-    }
-
-    console.log("all ingredients", this.props)
 
     return (
       <Router history={history}>
@@ -66,8 +57,8 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
-      console.log("fffffffffffff")
-      dispatch(fetchIngredients())
+      dispatch(me());
+      dispatch(fetchIngredients());
     }
   }
 }
