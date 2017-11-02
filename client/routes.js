@@ -5,6 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome, DisplayAllProducts} from './components'
+import DisplaySingleProduct from './components/DisplaySingleProduct'
 import { me, fetchIngredients } from './store'
 
 /**
@@ -25,6 +26,7 @@ class Routes extends Component {
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/ingredients/:id" component={DisplaySingleProduct} />
             {
               isLoggedIn &&
                 <Switch>
@@ -34,8 +36,8 @@ class Routes extends Component {
             }
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
-          </Switch>
-          {allIngredients && <DisplayAllProducts ingredients={allIngredients}/>}
+            </Switch>
+            {allIngredients && <DisplayAllProducts ingredients={allIngredients}/>}
         </Main>
       </Router>
     )

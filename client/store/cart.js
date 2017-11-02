@@ -9,40 +9,63 @@ const UPDATE_ITEM = 'UPDATE_ITEM'
 const defaultCart = []
 
 //Action Creators
+export const addItem = (item_id, quantity) => (
+    { 
+        type: ADD_ITEM,
+        cartItem: {item_id, quantity} 
+    }
+);
 
-export const addItem = item => ({ type: ADD_ITEM, item })
-export const removeItem = id => ({ type: REMOVE_ITEM, id })
-export const updateItem = item => ({ type: UPDATE_ITEM, item })
+export const updateItem = (item_id, quantity) => (
+    { 
+        type: UPDATE_ITEM,
+        cartItem: {item_id, quantity} 
+    }
+);
 
+export const removeItem = item_id => ({ type: REMOVE_ITEM, item_id });
+
+//Reducer
 export default function (state = defaultCart, action) {
     switch (action.type) {
         case ADD_ITEM:
-            const foundItem = state.find(item => item.id === action.item.id)
-            if (foundItem) return AddMoreToCart(state, action)
-            else return [...state, action.item]
+            const foundItem = state.find(onCartItem => onCartItem.item_id === action.cartItem.item_id)
+            if (foundItem) return onCartQuantityAdd(state, action);
+            else return [...state, action.cartItem];
 
         case REMOVE_ITEM:
-            return state.filter(item => item.id !== action.id)
+            return state.filter(onCartItem => onCartItem.item_id !== action.item_id)
+
+        case UPDATE_ITEM:
+            return onCartQuantityUpdate(state, action);
 
         default:
             return state
     }
 }
 
-function AddMoreToCart(state, action) {
-    return state.map(item => {
-        if (item.id === action.item.id) {
-            item.quantity += action.item.quantity
-        }
-        return item
+//Reducer helper functions
+const onCartQuantityAdd = (state, action) => {
+    return state.map(onCartItem => {
+        if (onCartItem.item_id === action.cartItem.item_id) {
+            action.cartItem.quantity += onCartItem.quantity;
+            return action.cartItem;
+        } else return onCartItem;
     })
 }
 
-//ProductC [X] quantity: 7 weight: 200g
+const onCartQuantityUpdate = (state, action) => {
+    return state.map(onCartItem => {
+        if (onCartItem.item_id === action.cartItem.item_id) {
+            return action.cartItem;
+        } else return onCartItem;
+    })
+}
 
-//[{name: Apple, id:1, quantity: 5}]
-
-//[[name: apple, id:1, quanity: 10]]
 
 
-//onclick( event => if(!apple) dispatch(addItem) else dispatch(update))
+
+
+
+
+
