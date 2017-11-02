@@ -1,5 +1,4 @@
 const router = require('express').Router()
-const chalk = require('chalk')
 const User = require('../db/models/user')
 module.exports = router
 
@@ -37,9 +36,6 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  console.log('1----1', req.session);
-  req.session.cookie.maxAge = 1;
-  console.log('2----2', req.session);
   res.json(req.user)
 })
 
