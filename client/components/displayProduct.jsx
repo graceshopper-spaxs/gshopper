@@ -25,7 +25,7 @@ export const displayProduct = (props) => {
       <p className="displayProductCalories">
       	{calories} calories.
       </p>
-      <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} item_id={id} quantity={1}/>
+      <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} ingredientId={id} quantity={1}/>
     </div>
   )
 }

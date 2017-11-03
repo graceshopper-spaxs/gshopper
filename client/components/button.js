@@ -4,12 +4,12 @@ import {addItem, removeItem, updateItem, addToSessionCart, updateSessionCart, de
 
 const smartButton = (props) => {
 
-	const {buttonType, buttonText, item_id, quantity} = props;
+	const {buttonType, buttonText, ingredientId, quantity} = props;
 
 	return (
 		<div className={buttonText}>
 	    	<button
-	    		onClick = {() => props.handleSubmit(buttonType, item_id, quantity)} 
+	    		onClick = {() => props.handleSubmit(buttonType, ingredientId, quantity)}
 	    	>
 	    		{buttonText}
 	    	</button>
@@ -19,22 +19,22 @@ const smartButton = (props) => {
 
 const mapDispatch = (dispatch) => {
   return {
-  	handleSubmit (buttonType, item_id, quantity) {
+  	handleSubmit (buttonType, ingredientId, quantity) {
   	    switch (buttonType) {
 			case "ADD_ITEM":
-				dispatch(addToSessionCart(item_id, quantity));
-				dispatch(addItem(item_id, quantity));
+				dispatch(addToSessionCart(ingredientId, quantity));
+				dispatch(addItem(ingredientId, quantity));
 				break;
 
 			case "REMOVE_ITEM":
-				dispatch(deleteSessionItem(item_id));
-				dispatch(removeItem(item_id));
+				dispatch(deleteSessionItem(ingredientId));
+				dispatch(removeItem(ingredientId));
 				break;
 
 			case "UPDATE_ITEM":
-				dispatch(updateSessionCart(item_id, quantity));
-				dispatch(updateItem(item_id, quantity));
-				break;          
+				dispatch(updateSessionCart(ingredientId, quantity));
+				dispatch(updateItem(ingredientId, quantity));
+				break;
     	}
   	}
   }

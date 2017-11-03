@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 const CartComponent = (props) => {
 
-    const itemInformation = (itemOnCart) => (props.ingredients.find(ingredient => +ingredient.id === +itemOnCart.item_id))
+    const itemInformation = (itemOnCart) => (props.ingredients.find(ingredient => +ingredient.id === +itemOnCart.ingredientId))
     const totalItemsonCart = props.itemsOnCart.reduce((cartQuantity, currentItem) => {
         return cartQuantity + currentItem.quantity
     }, 0)

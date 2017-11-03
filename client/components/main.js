@@ -30,7 +30,7 @@ const Main = (props) => {
               <Link to="/signup">Sign Up</Link>
             </div>
         }
-        <CartForNav/>        
+        <CartForNav/>
       </nav>
       <hr />
       {children}
