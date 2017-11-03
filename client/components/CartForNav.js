@@ -17,7 +17,7 @@ const CartComponent = (props) => {
 
         return (
             <div>
-                <Link to='/cart'>CART</Link>: {totalItemsonCart} items Calories: {totalCaloriesOnCart}
+                <Link to='/cartview'>CART</Link>: {totalItemsonCart} items Calories: {totalCaloriesOnCart}
             </div>
         )
     }

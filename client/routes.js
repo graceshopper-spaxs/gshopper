@@ -1,43 +1,48 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Router} from 'react-router'
-import {Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Router } from 'react-router'
+import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, DisplayAllProducts} from './components'
+import { Main, Login, Signup, UserHome, DisplayAllProducts } from './components'
 import DisplaySingleProduct from './components/DisplaySingleProduct'
 import { me, fetchIngredients, fetchSessionCart } from './store'
+import CartView from './components/CartView'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadInitialData()
   }
 
-  render () {
-    const {isLoggedIn, allIngredients} = this.props
+  render() {
+    const { isLoggedIn, allIngredients } = this.props
 
     return (
       <Router history={history}>
         <Main>
           <Switch>
+
             {/* Routes placed here are available to all visitors */}
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/ingredients/:id" component={DisplaySingleProduct} />
+            <Route exact path="/cartview" component={CartView} />
+            <Route exact path="/ingredients" render={() => (<DisplayAllProducts ingredients={allIngredients} />)} />
+
             {
               isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
-                </Switch>
+              <Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path="/home" component={UserHome} />
+              </Switch>
             }
+
             {/* Displays our Login component as a fallback */}
             <Route component={Login} />
-            </Switch>
-            {allIngredients && <DisplayAllProducts ingredients={allIngredients}/>}
+          </Switch>
         </Main>
       </Router>
     )
@@ -58,7 +63,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me());
       dispatch(fetchIngredients());
       dispatch(fetchSessionCart());
