@@ -17,7 +17,11 @@ const cartView = (props) => {
     })
 
     return (
-        <ul>{mappedCartItems}</ul>
+        <div>
+            <h1>Your Cart</h1>
+
+            <ul>{mappedCartItems}</ul>
+        </div>
     )
 }
 
