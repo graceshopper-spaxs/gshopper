@@ -7,7 +7,7 @@ import history from './history'
 import { Main, Login, Signup, UserHome, DisplayAllProducts } from './components'
 import DisplaySingleProduct from './components/DisplaySingleProduct'
 import { me, fetchIngredients, fetchSessionCart } from './store'
-import CartView from './components/CartView'
+import CartViewContainer from './components/CartViewContainer'
 
 /**
  * COMPONENT
@@ -29,7 +29,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/ingredients/:id" component={DisplaySingleProduct} />
-            <Route exact path="/cartview" component={CartView} />
+            <Route exact path="/cartview" component={CartViewContainer} />
             <Route exact path="/ingredients" render={() => (<DisplayAllProducts ingredients={allIngredients} />)} />
 
             {
