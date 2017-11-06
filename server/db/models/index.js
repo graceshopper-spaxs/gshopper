@@ -29,7 +29,7 @@ User.hasMany(Cart)
 module.exports = {
   User,
   Ingredient,
-  Cart
+  Cart,
   Order,
   OrderIngredient
 }
