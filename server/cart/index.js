@@ -75,19 +75,19 @@ router.put('/db/', (req, res, next) => {
             inCart: true
         }
     })
-    .spread((dbItem, created) => dbItem.update({ quantity: update.quantity }))
+    .then((dbItem) => dbItem.update({ quantity: update.quantity }))
     .then(result => res.json(result))
     .catch(next);
 });
 
 router.delete('/:ingredientId', (req, res, next) => {
-    let ingredientId = req.params.ingredientId;
+    let ingredientId = parseInt(req.params.ingredientId);
     let sessionCart = req.session.cart;
     req.session.cart = sessionCart.filter(onCartItem => onCartItem.ingredientId !== ingredientId);
     res.json(req.session.cart);
 });
 
-router.put('/db/:ingredientId', (req, res, next) => {
+router.delete('/db/:ingredientId', (req, res, next) => {
     const userId = req.user.id;
     let ingredientId = req.params.ingredientId;
     Cart.findOne({
@@ -97,7 +97,7 @@ router.put('/db/:ingredientId', (req, res, next) => {
             inCart: true
         }
     })
-    .spread((dbItem, created) => dbItem.update({ inCart: false }))
+    .then((dbItem) => dbItem.update({ inCart: false }))
     .then(result => res.json(result))
     .catch(next);
 });
