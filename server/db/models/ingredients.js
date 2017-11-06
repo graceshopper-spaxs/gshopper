@@ -11,11 +11,11 @@ const Ingredient = db.define('ingredient', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    calories_From_Fat: {
+    caloriesFromFat: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    total_Fat: {
+    totalFat: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -23,7 +23,7 @@ const Ingredient = db.define('ingredient', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-    total_Carbohydrates: {
+    totalCarbohydrates: {
         type: Sequelize.INTEGER,
         allowNull: false
     },
@@ -50,6 +50,9 @@ const Ingredient = db.define('ingredient', {
     image: {
         type: Sequelize.STRING,
         allowNull: false 
+    },
+    category: {
+        type: Sequelize.STRING,        
     }
 } 
 )

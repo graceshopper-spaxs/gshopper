@@ -22,6 +22,7 @@ const Main = (props) => {
             ? <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
+              <Link to="/user">User</Link>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
             : <div>
@@ -64,7 +65,7 @@ export default withRouter(connect(mapState, mapDispatch)(Main))
  * PROP TYPES
  */
 Main.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.object,
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
