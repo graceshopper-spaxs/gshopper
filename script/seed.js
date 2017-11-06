@@ -43,6 +43,14 @@ async function seed () {
     Ingredient.create({name: 'food100000', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'})
   ])
   
+  const orders = await Promise.all([
+    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50}),
+    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50}),
+    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50}),
+    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50}),
+    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50})
+  ])
+
   const orderingredient = await Promise.all([
     OrderIngredient.create({id: 1, quantity: 2, orderId: 1, ingredientId: 1}),
     OrderIngredient.create({id: 2, quantity: 3, orderId: 1, ingredientId: 2}),
@@ -53,14 +61,8 @@ async function seed () {
     OrderIngredient.create({id: 7, quantity: 3, orderId: 5, ingredientId: 5})
   ])  
 
-  
-  const orders = await Promise.all([
-    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50}),
-    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50}),
-    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50}),
-    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50}),
-    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50})
-  ])
+
+
 
 
 

@@ -30,14 +30,11 @@ const Order = db.define('order', {
     }
 })
 
-Order.hook('beforeCreate', (order, options) => {
-    return OrderIngredient.findAll({
-        attributes: ['quantity'],
-        where: {
-            orderId: 1
-        }
-    })
+Order.addHook('beforeCreate', (order, options) => {
+    console.log(order)
+    return OrderIngredient.findAll()
     .then(arrOfNum => {
+        console.log("dfwfdefe", arrOfNum)
         const sumFunc = (a, b) => {
             return a + b;
         }
