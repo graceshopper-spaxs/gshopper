@@ -2,6 +2,7 @@ const User = require('./user')
 const Ingredient = require('./ingredients')
 const Order = require('./order')
 const OrderIngredient = require('./orderIngredient')
+const Category = require('./category')
 
 
 /**
@@ -14,7 +15,10 @@ const OrderIngredient = require('./orderIngredient')
 
 Order.belongsToMany(Ingredient, {through: OrderIngredient})
 Ingredient.belongsToMany(Order, {through: OrderIngredient})
+Ingredient.belongsToMany(Category, {through: 'IngredientCategory'})
+Category.belongsToMany(Ingredient, {through: 'IngredientCategory'})
 User.hasMany(Order)
+
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -26,5 +30,6 @@ module.exports = {
   User,
   Ingredient,
   Order,
-  OrderIngredient
+  OrderIngredient,
+  Category
 }
