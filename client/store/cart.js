@@ -29,7 +29,7 @@ export const removeItem = ingredientId => ({ type: REMOVE_ITEM, ingredientId });
 
 export const getCart = cart => ({ type: GET_CART, cart })
 
-export const emptyCart = () => ({ type: EMPTY_CART})
+export const emptyCart = () => ({ type: EMPTY_CART })
 
 // Thunks
 
@@ -40,27 +40,27 @@ export const fetchSessionCart = () =>
             .catch(err => console.log(err))
 
 export const addToSessionCart = (ingredientId, quantity, isLoggedIn) =>
-    dispatch =>{
+    dispatch => {
         let route = routeDecision(isLoggedIn)
-        axios.post('/cart'+route, { ingredientId, quantity })
+        axios.post('/cart' + route, { ingredientId, quantity })
             .catch(err => console.log(err))
     }
 
 export const updateSessionCart = (ingredientId, quantity, isLoggedIn) =>
-    dispatch =>{
+    dispatch => {
         let route = routeDecision(isLoggedIn)
-        axios.put('/cart'+route, { ingredientId, quantity })
+        axios.put('/cart' + route, { ingredientId, quantity })
             .catch(err => console.log(err))
     }
 
 export const deleteSessionItem = (ingredientId, isLoggedIn) =>
-    dispatch =>{
-        if(isLoggedIn){
-            axios.delete(`/cart/${ingredientId}`)
-                .catch(err => console.log(err))   
-        } else {
+    dispatch => {
+        if (isLoggedIn) {
             axios.delete(`/cart/db/${ingredientId}`)
-                .catch(err => console.log(err))  
+                .catch(err => console.log(err))
+        } else {
+            axios.delete(`/cart/${ingredientId}`)
+                .catch(err => console.log(err))
         }
     }
 
@@ -110,7 +110,7 @@ const onCartQuantityUpdate = (state, action) => {
 //Thunk helper function
 
 const routeDecision = (isLoggedIn) => {
-    if(isLoggedIn) return "/db";
+    if (isLoggedIn) return "/db";
     else return ""
 }
 
