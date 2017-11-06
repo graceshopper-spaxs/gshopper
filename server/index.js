@@ -32,10 +32,6 @@ passport.deserializeUser((id, done) =>
     where: { id },
     include: [Cart]
   })
-    .then(user => {
-      console.log(user);
-      return user
-    })
     .then(user => done(null, user))
     .catch(done))
 

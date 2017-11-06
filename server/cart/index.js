@@ -8,8 +8,8 @@ router.get('/', (req, res, next) => {
     if (!req.session.cart) req.session.cart = [];
     // If a guest logs in...
     if (req.user) {
+        const userId = req.user.id;
         if (req.session.cart.length) {
-            const userId = req.user.id;
             Promise.all(mergeCartToDatabase(req.session.cart, userId))
                 .then(() => {
                     return Cart.findAll({
@@ -24,8 +24,12 @@ router.get('/', (req, res, next) => {
                 })
                 .catch(next)
             req.session.cart = [];
+        } else {
+            Cart.findAll({where:{userId, inCart:true}})
+            .then(result=>res.json(result))
+            req.session.cart = [];
         }
-        res.json([]);
+        
     } else res.json(req.session.cart);
 });
 
@@ -49,7 +53,7 @@ router.post('/db/', (req, res, next) => {
             inCart: true
         }
     })
-    .spread((dbItem, created) => dbItem.update({ quantity: add.quantity }))
+    .spread((dbItem, created) => dbItem.update({ quantity: dbItem.quantity + add.quantity }))
     .then(result => res.json(result))
     .catch(next);
 });
@@ -61,11 +65,41 @@ router.put('/', (req, res, next) => {
     res.json(req.session.cart);
 });
 
+router.put('/db/', (req, res, next) => {
+    let update = req.body;
+    const userId = req.user.id;
+    Cart.findOne({
+        where: {
+            userId,
+            ingredientId: add.ingredientId,
+            inCart: true
+        }
+    })
+    .spread((dbItem, created) => dbItem.update({ quantity: update.quantity }))
+    .then(result => res.json(result))
+    .catch(next);
+});
+
 router.delete('/:ingredientId', (req, res, next) => {
     let ingredientId = req.params.ingredientId;
     let sessionCart = req.session.cart;
     req.session.cart = sessionCart.filter(onCartItem => onCartItem.ingredientId !== ingredientId);
     res.json(req.session.cart);
+});
+
+router.put('/db/:ingredientId', (req, res, next) => {
+    const userId = req.user.id;
+    let ingredientId = req.params.ingredientId;
+    Cart.findOne({
+        where: {
+            userId,
+            ingredientId,
+            inCart: true
+        }
+    })
+    .spread((dbItem, created) => dbItem.update({ inCart: false }))
+    .then(result => res.json(result))
+    .catch(next);
 });
 
 //Session cart helper functions

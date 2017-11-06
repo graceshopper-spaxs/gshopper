@@ -4,12 +4,12 @@ import {addItem, removeItem, updateItem, addToSessionCart, updateSessionCart, de
 
 const smartButton = (props) => {
 
-	const {buttonType, buttonText, ingredientId, quantity} = props;
+	const {buttonType, buttonText, ingredientId, quantity, isLoggedIn} = props;
 
 	return (
 		<div className={buttonText}>
 	    	<button
-	    		onClick = {() => props.handleSubmit(buttonType, ingredientId, quantity)}
+	    		onClick = {() => props.handleSubmit(buttonType, ingredientId, quantity, isLoggedIn)}
 	    	>
 	    		{buttonText}
 	    	</button>
@@ -19,20 +19,20 @@ const smartButton = (props) => {
 
 const mapDispatch = (dispatch) => {
   return {
-  	handleSubmit (buttonType, ingredientId, quantity) {
+  	handleSubmit (buttonType, ingredientId, quantity, isLoggedIn) {
   	    switch (buttonType) {
 			case "ADD_ITEM":
-				dispatch(addToSessionCart(ingredientId, quantity));
+				dispatch(addToSessionCart(ingredientId, quantity, isLoggedIn));
 				dispatch(addItem(ingredientId, quantity));
 				break;
 
 			case "REMOVE_ITEM":
-				dispatch(deleteSessionItem(ingredientId));
+				dispatch(deleteSessionItem(ingredientId, isLoggedIn));
 				dispatch(removeItem(ingredientId));
 				break;
 
 			case "UPDATE_ITEM":
-				dispatch(updateSessionCart(ingredientId, quantity));
+				dispatch(updateSessionCart(ingredientId, quantity, isLoggedIn));
 				dispatch(updateItem(ingredientId, quantity));
 				break;
     	}
@@ -40,4 +40,10 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatch)(smartButton);
+const mapToState = (state) => {
+	return {
+		isLoggedIn: !!state.user.id
+	}
+}
+
+export default connect(mapToState, mapDispatch)(smartButton);

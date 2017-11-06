@@ -5,6 +5,7 @@ const ADD_ITEM = 'ADD_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_ITEM = 'UPDATE_ITEM'
 const GET_CART = 'GET_CART'
+const EMPTY_CART = 'EMPTY_CART'
 
 //Initial State
 const defaultCart = []
@@ -28,6 +29,8 @@ export const removeItem = ingredientId => ({ type: REMOVE_ITEM, ingredientId });
 
 export const getCart = cart => ({ type: GET_CART, cart })
 
+export const emptyCart = () => ({ type: EMPTY_CART})
+
 // Thunks
 
 export const fetchSessionCart = () =>
@@ -36,20 +39,30 @@ export const fetchSessionCart = () =>
             .then(res => dispatch(getCart(res.data)))
             .catch(err => console.log(err))
 
-export const addToSessionCart = (ingredientId, quantity) =>
-    dispatch =>
-        axios.post('/cart', { ingredientId, quantity })
+export const addToSessionCart = (ingredientId, quantity, isLoggedIn) =>
+    dispatch =>{
+        let route = routeDecision(isLoggedIn)
+        axios.post('/cart'+route, { ingredientId, quantity })
             .catch(err => console.log(err))
+    }
 
-export const updateSessionCart = (ingredientId, quantity) =>
-    dispatch =>
-        axios.put('/cart', { ingredientId, quantity })
+export const updateSessionCart = (ingredientId, quantity, isLoggedIn) =>
+    dispatch =>{
+        let route = routeDecision(isLoggedIn)
+        axios.put('/cart'+route, { ingredientId, quantity })
             .catch(err => console.log(err))
+    }
 
-export const deleteSessionItem = (ingredientId) =>
-    dispatch =>
-        axios.delete(`/cart/${ingredientId}`)
-            .catch(err => console.log(err))
+export const deleteSessionItem = (ingredientId, isLoggedIn) =>
+    dispatch =>{
+        if(isLoggedIn){
+            axios.delete(`/cart/${ingredientId}`)
+                .catch(err => console.log(err))   
+        } else {
+            axios.delete(`/cart/db/${ingredientId}`)
+                .catch(err => console.log(err))  
+        }
+    }
 
 //Reducer
 export default function (state = defaultCart, action) {
@@ -67,6 +80,9 @@ export default function (state = defaultCart, action) {
 
         case GET_CART:
             return action.cart;
+
+        case EMPTY_CART:
+            return [];
 
         default:
             return state
@@ -89,6 +105,13 @@ const onCartQuantityUpdate = (state, action) => {
             return action.cartItem;
         } else return onCartItem;
     })
+}
+
+//Thunk helper function
+
+const routeDecision = (isLoggedIn) => {
+    if(isLoggedIn) return "/db";
+    else return ""
 }
 
 
