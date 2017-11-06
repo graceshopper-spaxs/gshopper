@@ -21,6 +21,11 @@ const cartView = (props) => {
             <h1>Your Cart</h1>
 
             <ul>{mappedCartItems}</ul>
+            <button>
+                <Link to='/checkout'>
+                    Checkout!
+                </Link>
+            </button>
         </div>
     )
 }

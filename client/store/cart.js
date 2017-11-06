@@ -6,6 +6,7 @@ const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_ITEM = 'UPDATE_ITEM'
 const GET_CART = 'GET_CART'
 
+
 //Initial State
 const defaultCart = []
 
