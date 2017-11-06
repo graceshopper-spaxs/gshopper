@@ -1,5 +1,6 @@
 const User = require('./user')
 const Ingredient = require('./ingredients')
+const Cart = require('./cart')
 const Order = require('./order')
 const OrderIngredient = require('./orderIngredient')
 
@@ -22,9 +23,13 @@ User.hasMany(Order)
  * for example, we can say: const {User} = require('../db/models')
  * instead of: const User = require('../db/models/user')
  */
+
+User.hasMany(Cart)
+
 module.exports = {
   User,
   Ingredient,
+  Cart,
   Order,
   OrderIngredient
 }

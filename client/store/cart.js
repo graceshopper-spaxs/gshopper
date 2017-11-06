@@ -5,28 +5,31 @@ const ADD_ITEM = 'ADD_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_ITEM = 'UPDATE_ITEM'
 const GET_CART = 'GET_CART'
+const EMPTY_CART = 'EMPTY_CART'
 
 //Initial State
 const defaultCart = []
 
 //Action Creators
-export const addItem = (item_id, quantity) => (
+export const addItem = (ingredientId, quantity) => (
     {
         type: ADD_ITEM,
-        cartItem: { item_id, quantity }
+        cartItem: { ingredientId, quantity }
     }
 );
 
-export const updateItem = (item_id, quantity) => (
+export const updateItem = (ingredientId, quantity) => (
     {
         type: UPDATE_ITEM,
-        cartItem: { item_id, quantity }
+        cartItem: { ingredientId, quantity }
     }
 );
 
-export const removeItem = item_id => ({ type: REMOVE_ITEM, item_id });
+export const removeItem = ingredientId => ({ type: REMOVE_ITEM, ingredientId });
 
 export const getCart = cart => ({ type: GET_CART, cart })
+
+export const emptyCart = () => ({ type: EMPTY_CART})
 
 // Thunks
 
@@ -36,37 +39,50 @@ export const fetchSessionCart = () =>
             .then(res => dispatch(getCart(res.data)))
             .catch(err => console.log(err))
 
-export const addToSessionCart = (item_id, quantity) =>
-    dispatch =>
-        axios.post('/cart', { item_id, quantity })
+export const addToSessionCart = (ingredientId, quantity, isLoggedIn) =>
+    dispatch =>{
+        let route = routeDecision(isLoggedIn)
+        axios.post('/cart'+route, { ingredientId, quantity })
             .catch(err => console.log(err))
+    }
 
-export const updateSessionCart = (item_id, quantity) =>
-    dispatch =>
-        axios.put('/cart', { item_id, quantity })
+export const updateSessionCart = (ingredientId, quantity, isLoggedIn) =>
+    dispatch =>{
+        let route = routeDecision(isLoggedIn)
+        axios.put('/cart'+route, { ingredientId, quantity })
             .catch(err => console.log(err))
+    }
 
-export const deleteSessionItem = (item_id) =>
-    dispatch =>
-        axios.delete(`/cart/${item_id}`)
-            .catch(err => console.log(err))
+export const deleteSessionItem = (ingredientId, isLoggedIn) =>
+    dispatch =>{
+        if(isLoggedIn){
+            axios.delete(`/cart/${ingredientId}`)
+                .catch(err => console.log(err))   
+        } else {
+            axios.delete(`/cart/db/${ingredientId}`)
+                .catch(err => console.log(err))  
+        }
+    }
 
 //Reducer
 export default function (state = defaultCart, action) {
     switch (action.type) {
         case ADD_ITEM:
-            const foundItem = state.find(onCartItem => onCartItem.item_id === action.cartItem.item_id)
+            const foundItem = state.find(onCartItem => onCartItem.ingredientId === action.cartItem.ingredientId)
             if (foundItem) return onCartQuantityAdd(state, action);
             else return [...state, action.cartItem];
 
         case REMOVE_ITEM:
-            return state.filter(onCartItem => onCartItem.item_id !== action.item_id)
+            return state.filter(onCartItem => onCartItem.ingredientId !== action.ingredientId)
 
         case UPDATE_ITEM:
             return onCartQuantityUpdate(state, action);
 
         case GET_CART:
             return action.cart;
+
+        case EMPTY_CART:
+            return [];
 
         default:
             return state
@@ -76,7 +92,7 @@ export default function (state = defaultCart, action) {
 //Reducer helper functions
 const onCartQuantityAdd = (state, action) => {
     return state.map(onCartItem => {
-        if (onCartItem.item_id === action.cartItem.item_id) {
+        if (onCartItem.ingredientId === action.cartItem.ingredientId) {
             action.cartItem.quantity += onCartItem.quantity;
             return action.cartItem;
         } else return onCartItem;
@@ -85,10 +101,17 @@ const onCartQuantityAdd = (state, action) => {
 
 const onCartQuantityUpdate = (state, action) => {
     return state.map(onCartItem => {
-        if (onCartItem.item_id === action.cartItem.item_id) {
+        if (onCartItem.ingredientId === action.cartItem.ingredientId) {
             return action.cartItem;
         } else return onCartItem;
     })
+}
+
+//Thunk helper function
+
+const routeDecision = (isLoggedIn) => {
+    if(isLoggedIn) return "/db";
+    else return ""
 }
 
 
