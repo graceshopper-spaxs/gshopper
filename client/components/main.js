@@ -11,7 +11,7 @@ import CartForNav from './CartForNav'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn} = props
+  const {children, handleClick, isLoggedIn, userType} = props
 
   return (
     <div>
@@ -22,7 +22,11 @@ const Main = (props) => {
             ? <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
-              <Link to="/user">User</Link>
+              {
+                userType === 'admin' &&
+                <Link to="/user">User</Link>
+              }
+              <Link to="/ingredients">Ingredients</Link>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
             : <div>
@@ -44,7 +48,8 @@ const Main = (props) => {
  */
 const mapState = (state) => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    userType: state.user.userType
   }
 }
 
