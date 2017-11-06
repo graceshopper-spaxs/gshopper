@@ -44,11 +44,11 @@ async function seed () {
   ])
   
   const orders = await Promise.all([
-    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50}),
-    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50}),
-    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50}),
-    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50}),
-    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50})
+    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50, orderAmount: 3}),
+    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50, orderAmount: 5}),
+    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50, orderAmount: 34}),
+    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50, orderAmount: 5}),
+    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50, orderAmount: 60})
   ])
 
   const orderingredient = await Promise.all([
