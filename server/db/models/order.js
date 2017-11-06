@@ -12,7 +12,7 @@ const Order = db.define('order', {
     },
     orderPrice: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        defaultValue: 0
     }
 })
 module.exports = Order;
