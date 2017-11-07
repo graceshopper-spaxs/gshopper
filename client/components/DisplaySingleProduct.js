@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
+import { fetchSingleProduct } from '../store'
+import AddButton from "./button"
 import { fetchSingleProduct } from '../store';
 import AddButton from './button';
-import ProductEditor from './ProductEditor'
+import ProductEditor from './ProductEditor';
+import Review from './Review';
+
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -51,7 +55,6 @@ class DisplaySingleProduct extends React.Component {
                     <p className="displayProductCalories">
                         {theProduct.calories} calories.
             </p>
-
                     <select value={this.state.quantitySelected} className="addItemValue" id="selectQuantity" onChange={event => this.setState({ quantitySelected: event.target.value })}>
                         <option> 1</option>
                         <option> 2</option>
