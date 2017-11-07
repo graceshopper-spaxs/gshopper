@@ -50,6 +50,9 @@ const Ingredient = db.define('ingredient', {
     image: {
         type: Sequelize.STRING,
         allowNull: false 
+    },
+    category: {
+        type: Sequelize.STRING,        
     }
 } 
 )

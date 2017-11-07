@@ -17,7 +17,7 @@ const findSelectValue = () =>{
 
 
 class DisplaySingleProduct extends React.Component{
-    
+
     constructor(props) {
         super(props)
         this.state = {
@@ -26,16 +26,16 @@ class DisplaySingleProduct extends React.Component{
     }
     render(){
     if(this.props.allIngredients.length > 0){
-        const productId = Number(this.props.match.params.id);
-        const theProduct = this.props.allIngredients.filter(ingredient => ingredient.id === productId)[0]
-        return( 
-            <div> 
+        const  ingredientId = Number(this.props.match.params.id);
+        const theProduct = this.props.allIngredients.filter(ingredient => ingredient.id === ingredientId )[0]
+        return(
+            <div>
             <img className="displayProductImage" src={theProduct.image} height="82" width="82"/>
-            
+
             <p className="displayProductName">
             {theProduct.name}
             </p>
-        
+
             <p className="displayProductPrice">
                 ${theProduct.price}
             </p>
@@ -53,11 +53,11 @@ class DisplaySingleProduct extends React.Component{
                 <option> 4</option>
                 <option> 5</option>
                 </select>
-            <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} item_id={productId} quantity={+this.state.quantitySelected}/>
-        </div>    
+            <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} ingredientId={ingredientId} quantity={+this.state.quantitySelected}/>
+        </div>
         )
     } else{
-        return <div> </div> 
+        return <div> </div>
     }
 }
 }

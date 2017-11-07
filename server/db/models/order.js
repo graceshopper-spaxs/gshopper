@@ -13,6 +13,9 @@ const Order = db.define('order', {
     orderPrice: {
         type: Sequelize.INTEGER,
         defaultValue: 0
-    }
+    },
+    address: {
+        type: Sequelize.STRING
+    },
 })
 module.exports = Order;
