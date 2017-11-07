@@ -19,7 +19,7 @@ const User = db.define('user', {
     defaultValue: 'user'
   },
   payment: {
-    type: Sequelize.BIGINT(16)
+    type: Sequelize.BIGINT
   },
   password: {
     type: Sequelize.STRING

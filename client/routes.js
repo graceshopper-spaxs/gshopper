@@ -4,14 +4,18 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, DisplayAllProducts} from './components'
+import { Main, Login, Signup, UserHome, DisplayAllProducts } from './components'
 import DisplaySingleUser from './components/DisplaySingleUser.jsx'
 import DisplaySingleProduct from './components/DisplaySingleProduct'
-import { me, fetchIngredients, fetchSessionCart } from './store'
+import { me, fetchIngredients, fetchSessionCart, fetchCategories } from './store'
 import Checkout from './components/Checkout'
 import CartViewContainer from './components/CartViewContainer'
 import OrderHistory from './components/OrderHistory'
+import ProductPoster from './components/ProductPoster'
+import ViewAllOrders from './components/ViewAllOrders'
+import OneOrder from './components/OneOrder'
 
+import StatefulIngredients from './components/StatefulIngredients';
 /**
  * COMPONENT
  */
@@ -33,17 +37,20 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/ingredients/:id" component={DisplaySingleProduct} />
             <Route exact path="/cartview" component={CartViewContainer} />
-            <Route exact path="/ingredients" render={() => (<DisplayAllProducts ingredients={allIngredients} />)} />
+            <Route exact path="/ingredients" component={StatefulIngredients} />
 
             {
               isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
-                  <Route exact path="/user" component={DisplaySingleUser} />
-                  <Route exact path="/orderhistory" render={()=>(<OrderHistory user={user}/>)}/>
-                  <Route path="/checkout" component={Checkout} />
-                </Switch>
+              <Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path="/home" component={UserHome} />
+                <Route path="/user" component={DisplaySingleUser} />
+                <Route exact path="/orderhistory" render={()=>(<OrderHistory user={user}/>)}/>
+                <Route path="/orders/:orderId" component={OneOrder} />
+                <Route path="/checkout" component={Checkout} />
+                <Route path="/product-post" component={ProductPoster} />
+                <Route path="/view-all-orders" component={ViewAllOrders} />
+              </Switch>
             }
 
             {/* Displays our Login component as a fallback */}
@@ -75,6 +82,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(fetchIngredients());
       dispatch(fetchSessionCart());
+      dispatch(fetchCategories());
     }
   }
 }
