@@ -10,6 +10,7 @@ import DisplaySingleProduct from './components/DisplaySingleProduct'
 import { me, fetchIngredients, fetchSessionCart, fetchCategories } from './store'
 import Checkout from './components/Checkout'
 import CartViewContainer from './components/CartViewContainer'
+import OrderHistory from './components/OrderHistory'
 import ProductPoster from './components/ProductPoster'
 import ViewAllOrders from './components/ViewAllOrders'
 import OneOrder from './components/OneOrder'
@@ -24,7 +25,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn, allIngredients } = this.props
+    const { isLoggedIn, allIngredients, orders, user} = this.props
 
     return (
       <Router history={history}>
@@ -44,6 +45,7 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/home" component={UserHome} />
                 <Route path="/user" component={DisplaySingleUser} />
+                <Route exact path="/orderhistory" render={()=>(<OrderHistory user={user}/>)}/>
                 <Route path="/orders/:orderId" component={OneOrder} />
                 <Route path="/checkout" component={Checkout} />
                 <Route path="/product-post" component={ProductPoster} />
@@ -68,7 +70,9 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    allIngredients: state.ingredient
+    allIngredients: state.ingredient,
+    orders: state.user.orders,
+    user : state.user
   }
 }
 

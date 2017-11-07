@@ -24,6 +24,11 @@ router.post('/', (req, res, next) => {
         .catch(next)
 })
 
+router.get('/:userId', (req,res,next) => {
+    const userId = req.params.userId
+    Order.findAll({where: {userId}, include:[{all:true}]})
+    .then(orders => res.json(orders))
+})
 
 // Get all orders
 router.get('/', (req, res, next) => {
@@ -58,4 +63,3 @@ router.put('/:orderid',(req, res, next) => {
     })
     .catch(next)    
 })
-
