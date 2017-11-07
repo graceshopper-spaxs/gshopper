@@ -40,9 +40,6 @@ router.post('/:id/addreview', (req, res, next) => {
 
   .catch(next)
 })
-    .then(ingredient => res.json(ingredient))
-    .catch(next)
-})
 
 router.post('/', (req, res, next) => {
   if (req.user.userType === 'admin') {
