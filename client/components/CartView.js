@@ -12,20 +12,18 @@ const cartView = (props) => {
     //maps all items passed down as props
     const mappedCartItems = props.cartItems.map((itemOnCart) => {
         return (
-            <SingleCartItem itemOnCart={itemOnCart} productInfo={productInfo(itemOnCart)} key={itemOnCart.ingredientId} activeOrder={true} />
+            <SingleCartItem itemOnCart={itemOnCart} productInfo={productInfo(itemOnCart)} key={itemOnCart.ingredientId} activeOrder={props.onCart} />
         )
     })
 
     return (
         <div>
-            <h1>Your Cart</h1>
-
             <ul>{mappedCartItems}</ul>
-            <button>
+            {props.onCart && <button>
                 <Link to='/checkout'>
                     Checkout!
                 </Link>
-            </button>
+            </button>}
         </div>
     )
 }

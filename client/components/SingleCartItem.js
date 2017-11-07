@@ -28,7 +28,7 @@ class SingleCartItem extends Component {
         return (
             <li>
                 <Link to={`/ingredients/${itemOnCart.ingredientId}`}>
-                    {productInfo.name}
+                    {productInfo.name} 
                 </Link>
 
                 ID: {itemOnCart.ingredientId} Quantity: {itemOnCart.quantity}

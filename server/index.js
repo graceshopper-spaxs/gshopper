@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
 const Cart = require('./db/models/cart')
+const {Order, OrderIngredient} = require('./db/models')
 
 module.exports = app
 
@@ -30,7 +31,10 @@ passport.serializeUser((user, done) => done(null, user.id))
 passport.deserializeUser((id, done) =>
   db.models.user.findOne({
     where: { id },
-    include: [Cart]
+    include: [Cart, {
+      model: Order,
+      include : [{all: true}]
+    }]
   })
     .then(user => done(null, user))
     .catch(done))

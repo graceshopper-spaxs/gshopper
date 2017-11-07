@@ -1,7 +1,7 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-// import AddButton from "./button"
+import OrderHistory from './OrderHistory'
 
 const DisplaySingleUser = (props) => {
     const { id, email, firstName, lastName} = props.user
@@ -11,7 +11,7 @@ const DisplaySingleUser = (props) => {
             <p>{firstName} {lastName}</p>
             <p>email: {email}</p>
             <p>user image</p>
-            <p>order history</p>
+            <Link to={`/orderhistory`}>Order History</Link>            
         </div>
     )
 }
