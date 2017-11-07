@@ -25,8 +25,8 @@ class OneOrder extends Component {
                     <tbody>
                         {associations.length && associations.map((item, i) => (
                             <tr key={i}>
-                                <td>id: {item.ingredientId}</td>
-                                <td>quantity: {item.quantity}</td>
+                                <td><span>id: {item.ingredientId}</span></td>
+                                <td><span>quantity: {item.quantity}</span></td>
                             </tr>
                         ))}
                     </tbody>
