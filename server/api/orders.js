@@ -11,8 +11,8 @@ router.post('/', (req, res, next) => {
                 const orderId = orderInstance[0][0].orderId
                 const quantity = item.quantity
                 const ingredientId = item.ingredientId
-                
-                OrderIngredient.update({quantity}, {
+
+                OrderIngredient.update({ quantity }, {
                     where: {
                         orderId,
                         ingredientId
@@ -24,6 +24,26 @@ router.post('/', (req, res, next) => {
         .catch(next)
 })
 
+
+// Get all orders
+router.get('/', (req, res, next) => {
+    Order.findAll()
+        .then(orders => {
+            res.json(orders)
+        })
+        .catch(next)
+})
+
+// Get one order
+router.get('/:orderId', (req, res, next) => {
+    OrderIngredient.findAll({
+        where: {
+            orderId: req.params.orderId
+        }
+    })
+    .then(order => res.json(order))
+    .catch(next)
+})
 router.put('/:orderid',(req, res, next) => {
     const newStatus = req.body.status;
     const orderId = req.params.orderid;
