@@ -7,7 +7,7 @@ import history from './history'
 import {Main, Login, Signup, UserHome, DisplayAllProducts} from './components'
 import DisplaySingleUser from './components/DisplaySingleUser.jsx'
 import DisplaySingleProduct from './components/DisplaySingleProduct'
-import { me, fetchIngredients, fetchSessionCart } from './store'
+import { me, fetchIngredients, fetchSessionCart, fetchCategories } from './store'
 import Checkout from './components/Checkout'
 import CartViewContainer from './components/CartViewContainer'
 import StatefulIngredients from './components/StatefulIngredients';
@@ -71,6 +71,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me());
       dispatch(fetchIngredients());
       dispatch(fetchSessionCart());
+      dispatch(fetchCategories());
     }
   }
 }
