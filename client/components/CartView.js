@@ -19,7 +19,7 @@ const cartView = (props) => {
     return (
         <div>
             <ul>{mappedCartItems}</ul>
-            {props.onCart && <button>
+            {props.onCart && props.cartItems.length > 0 && <button>
                 <Link to='/checkout'>
                     Checkout!
                 </Link>
