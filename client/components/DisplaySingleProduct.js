@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import store from '../store';
 import { fetchSingleProduct } from '../store'
 import AddButton from "./button"
-import { fetchSingleProduct } from '../store';
-import AddButton from './button';
 import ProductEditor from './ProductEditor';
 import Review from './Review';
 
