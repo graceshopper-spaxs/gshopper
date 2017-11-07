@@ -25,16 +25,17 @@ class SingleCartItem extends Component {
             return list
         }
 
-        // console.log(itemOnCart)
-        // console.log(productInfo)
+        const itemPrice = productInfo.price * itemOnCart.quantity
+
         return (
             <li>
-                <Link to={`/ingredients/${itemOnCart.ingredientId}`}>
-                    {productInfo.name + "    "}
-                </Link>
-
-                Quantity: {itemOnCart.quantity}
-
+                <p>
+                    <Link to={`/ingredients/${itemOnCart.ingredientId}`}>
+                        {productInfo.name + "    "}
+                    </Link>
+                    Quantity: {itemOnCart.quantity}         
+                    Price:${itemPrice}
+                </p>
                 {//check if its cart view or past order and disables button if its a past order
                     activeOrder && (<div>
                         <Button

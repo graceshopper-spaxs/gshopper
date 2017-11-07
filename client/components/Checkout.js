@@ -37,9 +37,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         const city = event.target.city.value
         const state = event.target.state.value
         const zip = event.target.zip.value
+        const fullAddress = [address1, address2, city, state, zip].join(' ')
+
+        //helper function to match items on cart to their corresponding product information
         const itemInformation = (itemOnCart) => (ingredients.find(ingredient => +ingredient.id === +itemOnCart.ingredientId))
         
-        const fullAddress = [address1, address2, city, state, zip].join(' ')
+        
         const orderAmount = cart.reduce((prevQuant, currentItem)=>(prevQuant + currentItem.quantity),0) 
         const orderPrice = cart.reduce((cartPrice, currentItem) => {
             return cartPrice + itemInformation(currentItem).price * currentItem.quantity

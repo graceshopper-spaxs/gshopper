@@ -24,8 +24,8 @@ const cartView = (props) => {
     return (
         <div>
             <ul>{mappedCartItems}</ul>
+            <p>{`Subtotal: $${subTotal}`}</p>                        
             {props.onCart && props.cartItems.length > 0 && <div>
-                <p>{`Subtotal: $${subTotal}`}</p>
                 <button>
                     <Link to='/checkout'>
                         Checkout!
