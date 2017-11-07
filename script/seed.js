@@ -7,13 +7,13 @@ async function seed () {
 
 
   const users = await Promise.all([
-    User.create({firstName: 'sisi', lastName: 'qin', email: 'sisi@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'phil', lastName: 'qin', email: 'phil@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'arthur', lastName: 'qin', email: 'athur@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'sam', lastName: 'qin', email: 'sam@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'simon', lastName: 'qin', email: 'simon@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'dog', lastName: 'qin', email: 'dog@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'cat', lastName: 'qin', email: 'cat@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'sisi', lastName: 'qin', email: 'sisi@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'phil', lastName: 'qin', email: 'phil@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'arthur', lastName: 'qin', email: 'athur@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'sam', lastName: 'qin', email: 'sam@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'simon', lastName: 'qin', email: 'simon@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'dog', lastName: 'qin', email: 'dog@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'cat', lastName: 'qin', email: 'cat@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
   ])
 
   
@@ -31,11 +31,11 @@ async function seed () {
   ])
   
   const orders = await Promise.all([
-    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50, orderAmount: 3}),
-    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50, orderAmount: 5}),
-    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50, orderAmount: 34}),
-    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50, orderAmount: 5}),
-    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50, orderAmount: 60})
+    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50, orderAmount: 3,address: '1234 dog st'}),
+    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50, orderAmount: 5, address: '1234 dog st',}),
+    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50, orderAmount: 34, address: '1234 dog st',}),
+    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50, orderAmount: 5, address: '1234 dog st',}),
+    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50, orderAmount: 60, address: '1234 dog st',})
   ])
 
   const orderingredient = await Promise.all([
