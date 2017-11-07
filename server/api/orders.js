@@ -44,3 +44,18 @@ router.get('/:orderId', (req, res, next) => {
     .then(order => res.json(order))
     .catch(next)
 })
+router.put('/:orderid',(req, res, next) => {
+    const newStatus = req.body.status;
+    const orderId = req.params.orderid;
+    Order.findById(orderId)
+    .then(order => {
+        order.status = newStatus || "created";
+        order.save({fields: ['status']})
+        .then( () => {
+            return Order.findById(orderId)
+            .then(order => res.json(order))
+        })
+    })
+    .catch(next)    
+})
+

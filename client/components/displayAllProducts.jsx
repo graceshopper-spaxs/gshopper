@@ -18,6 +18,12 @@ export const displayAllProducts = (props) => {
           ingredients.map((ingredient, i) => <DisplayProduct key={i} ingredient={ingredient} />)
         }
       </div>
+      <div>
+      {
+        !ingredients.length &&
+        <h5>Products not Found</h5>
+      }
+      </div>
     </div>
   )
 }
