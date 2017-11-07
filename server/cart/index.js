@@ -80,6 +80,18 @@ router.put('/db/', (req, res, next) => {
     .catch(next);
 });
 
+router.put('/:userId', (req, res, next) => {
+    const userId = req.params.userId
+
+    Cart.update({inCart: false}, {
+        where: {
+            userId
+        }
+    })
+    .then(() => res.send("Items are updated"))
+    .catch(next)
+})
+
 router.delete('/:ingredientId', (req, res, next) => {
     let ingredientId = parseInt(req.params.ingredientId);
     let sessionCart = req.session.cart;
