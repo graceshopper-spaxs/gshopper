@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import store from '../store';
 import { fetchSingleProduct } from '../store'
 import AddButton from "./button"
+import Review from './Review';
 
 
 const mapStateToProps = (state, ownProps) =>{
@@ -54,6 +55,7 @@ class DisplaySingleProduct extends React.Component{
                 <option> 5</option>
                 </select>
             <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} ingredientId={ingredientId} quantity={+this.state.quantitySelected}/>
+            <Review />
         </div>
         )
     } else{

@@ -10,3 +10,4 @@ const OrderIngredient = db.define('orderIngredient', {
 })
 
 module.exports = OrderIngredient
+
