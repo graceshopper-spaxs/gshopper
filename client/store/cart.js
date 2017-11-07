@@ -1,5 +1,4 @@
 import axios from 'axios'
-import chalk from 'chalk'
 
 //Action Types
 const ADD_ITEM = 'ADD_ITEM'
