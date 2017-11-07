@@ -22,8 +22,6 @@ const OrderHistory = ({ orders, productInformation }) => {
         </li>
     })
 
-    console.log(OrdersWithOrderItems)
-
     return (
         <div>
             <h1>Order History</h1>
