@@ -25,6 +25,8 @@ class SingleCartItem extends Component {
             return list
         }
 
+        console.log(itemOnCart)
+        console.log(productInfo)
         return (
             <li>
                 <Link to={`/ingredients/${itemOnCart.ingredientId}`}>

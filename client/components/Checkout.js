@@ -5,7 +5,7 @@ import {checkoutCart} from '../store'
 const Checkout = (props) => {
         return (
             <div>
-                <form onSubmit={event => props.handleSubmit(event, props.user, props.cart)}>
+                <form onSubmit={event => props.handleSubmit(event, props.user, props.cart, props.ingredients)}>
                     <label>Address Line 1: </label>
                     <input type="text" name="address1" placeholder="street address, P.O. box, etc" />
                     <label>Address Line 2: </label>
@@ -24,11 +24,12 @@ const Checkout = (props) => {
 
 const mapStateToProps = (state) => ({
     user: state.user,
-    cart: state.cart
+    cart: state.cart,
+    ingredients: state.ingredient
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    handleSubmit(event, user, cart) {
+    handleSubmit(event, user, cart, ingredients) {
         event.preventDefault()
 
         const address1 = event.target.address1.value
@@ -36,15 +37,21 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         const city = event.target.city.value
         const state = event.target.state.value
         const zip = event.target.zip.value
-
+        const itemInformation = (itemOnCart) => (ingredients.find(ingredient => +ingredient.id === +itemOnCart.ingredientId))
+        
         const fullAddress = [address1, address2, city, state, zip].join(' ')
+        const orderAmount = cart.reduce((prevQuant, currentItem)=>(prevQuant + currentItem.quantity),0) 
+        const orderPrice = cart.reduce((cartPrice, currentItem) => {
+            return cartPrice + itemInformation(currentItem).price * currentItem.quantity
+        }, 0)
 
+        console.log(orderPrice)
         const order = {
             userId: user.id,
             address: fullAddress,
             cart: cart,
-            orderAmount: 500,    // FIX
-            orderPrice: 33443434 // FIX
+            orderAmount: orderAmount,    // FIX
+            orderPrice: orderPrice // FIX
         }
 
         dispatch(checkoutCart(order, ownProps.history))
