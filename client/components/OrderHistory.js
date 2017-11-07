@@ -45,7 +45,7 @@ class OrderHistory extends Component {
 
 const mapState = state => ({
     productInformation: state.ingredient,
-    orders : state.orders
+    orders : state.userOrders
 })
 
 const mapDispatch = (dispatch, ownProps) => {
