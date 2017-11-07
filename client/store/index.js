@@ -26,5 +26,3 @@ export * from './category';
 export * from './review';
 export * from './orders';
 export * from './orderIngredient';
-
-
