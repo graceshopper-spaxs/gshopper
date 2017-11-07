@@ -10,7 +10,7 @@ import DisplaySingleProduct from './components/DisplaySingleProduct'
 import { me, fetchIngredients, fetchSessionCart } from './store'
 import Checkout from './components/Checkout'
 import CartViewContainer from './components/CartViewContainer'
-
+import StatefulIngredients from './components/StatefulIngredients';
 /**
  * COMPONENT
  */
@@ -32,7 +32,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path="/ingredients/:id" component={DisplaySingleProduct} />
             <Route exact path="/cartview" component={CartViewContainer} />
-            <Route exact path="/ingredients" render={() => (<DisplayAllProducts ingredients={allIngredients} />)} />
+            <Route exact path="/ingredients" component={StatefulIngredients} />
 
             {
               isLoggedIn &&
