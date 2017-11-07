@@ -3,11 +3,9 @@ const {Category} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  if(req.user.userType === "admin"){
     Category.findAll()
       .then(categories => res.json(categories))
       .catch(next)
-  } else res.send("UNAUTHORIZED REQUEST")
 })
 
 

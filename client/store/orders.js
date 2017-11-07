@@ -4,7 +4,6 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
-
 /**
  * INITIAL STATE
  */
@@ -24,11 +23,11 @@ const getOrders = orders => ({
 export const fetchAllOrders = () =>
   dispatch =>
     axios.get('/api/orders')
-    .then(orders => {
-        return  dispatch(getOrders(orders.data))
+      .then(orders => {
+        return dispatch(getOrders(orders.data))
       }
-    )
-    .catch(err => console.log(err))
+      )
+      .catch(err => console.log(err))
 
 /**
  * REDUCER

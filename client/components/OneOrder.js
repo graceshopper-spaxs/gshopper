@@ -1,16 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAllAssociations } from '../store'
+import axios from 'axios'
 
 class OneOrder extends Component {
+    constructor(props) {
+        super(props)
+        this.handleDropDown = this.handleDropDown.bind(this)
+    }
+
     componentDidMount() {
         const orderId = this.props.match.params.orderId
         this.props.fetchAllAssociations(orderId)
     }
 
+    handleDropDown(event) {
+        const orderId = this.props.match.params.orderId;
+        const status = event.target.value;
+
+        axios.put(`/api/orders/${orderId}`, { status })
+        .catch(err => console.error(err))
+    }
+
     render() {
         const associations = this.props.associations
-
         return (
             <div>
                 <div>
@@ -18,8 +31,8 @@ class OneOrder extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th scope="col">Ingredient</th>
-                            <th scope="col">Quantity</th>
+                            <th>Ingredient</th>
+                            <th>Quantity</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,9 +45,14 @@ class OneOrder extends Component {
                     </tbody>
                 </table>
                 </div>
-                <div>
-                    Status:
-                    Drop down menu
+                <div className="form-group">
+                    <label>Status:</label>
+                    <select name="status" onChange={this.handleDropDown}>
+                        <option value="created">created</option>
+                        <option value="processed">processed</option>
+                        <option value="completed">completed</option>
+                        <option value="cancelled">cancelled</option>
+                    </select>
                 </div>
             </div>
         )
