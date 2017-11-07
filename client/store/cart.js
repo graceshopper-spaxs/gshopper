@@ -6,6 +6,8 @@ const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_ITEM = 'UPDATE_ITEM'
 const GET_CART = 'GET_CART'
 const EMPTY_CART = 'EMPTY_CART'
+const CHECKOUT_CART = 'CHECKOUT_CART'
+
 
 //Initial State
 const defaultCart = []
@@ -30,6 +32,9 @@ export const removeItem = ingredientId => ({ type: REMOVE_ITEM, ingredientId });
 export const getCart = cart => ({ type: GET_CART, cart })
 
 export const emptyCart = () => ({ type: EMPTY_CART })
+
+export const checkoutItem = () => ({ type: CHECKOUT_CART })
+
 
 // Thunks
 
@@ -64,6 +69,23 @@ export const deleteSessionItem = (ingredientId, isLoggedIn) =>
         }
     }
 
+export const checkoutCart = ({ userId, orderAmount, orderPrice, address, cart }, history) =>
+    dispatch => {
+        axios.post('/api/orders', { userId, orderAmount, orderPrice, address, cart })
+            .then(order => {
+                console.log("Working")
+                axios.put(`/cart/${userId}`,{})
+            })
+            .then(() => {
+                dispatch(emptyCart())
+            })
+            .then(() => {
+                history.push('/home')
+            })
+            .catch(err => console.log(err))
+    }
+
+
 //Reducer
 export default function (state = defaultCart, action) {
     switch (action.type) {
@@ -83,7 +105,8 @@ export default function (state = defaultCart, action) {
 
         case EMPTY_CART:
             return [];
-
+        case CHECKOUT_CART:
+            return [];
         default:
             return state
     }

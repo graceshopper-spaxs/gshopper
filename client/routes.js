@@ -8,6 +8,7 @@ import {Main, Login, Signup, UserHome, DisplayAllProducts} from './components'
 import DisplaySingleUser from './components/DisplaySingleUser.jsx'
 import DisplaySingleProduct from './components/DisplaySingleProduct'
 import { me, fetchIngredients, fetchSessionCart } from './store'
+import Checkout from './components/Checkout'
 import CartViewContainer from './components/CartViewContainer'
 
 /**
@@ -39,6 +40,7 @@ class Routes extends Component {
                   {/* Routes placed here are only available after logging in */}
                   <Route path="/home" component={UserHome} />
                   <Route path="/user" component={DisplaySingleUser} />
+                  <Route path="/checkout" component={Checkout} />
                 </Switch>
             }
 
