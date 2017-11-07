@@ -12,6 +12,7 @@ import Checkout from './components/Checkout'
 import CartViewContainer from './components/CartViewContainer'
 import ProductPoster from './components/ProductPoster'
 import ViewAllOrders from './components/ViewAllOrders'
+import OneOrder from './components/OneOrder'
 
 /**
  * COMPONENT
@@ -42,6 +43,7 @@ class Routes extends Component {
                 {/* Routes placed here are only available after logging in */}
                 <Route path="/home" component={UserHome} />
                 <Route path="/user" component={DisplaySingleUser} />
+                <Route path="/orders/:orderId" component={OneOrder} />
                 <Route path="/checkout" component={Checkout} />
                 <Route path="/product-post" component={ProductPoster} />
                 <Route path="/view-all-orders" component={ViewAllOrders} />

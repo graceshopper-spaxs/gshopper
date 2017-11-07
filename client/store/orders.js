@@ -5,7 +5,6 @@ import axios from 'axios'
  */
 const GET_ALL_ORDERS = 'GET_ALL_ORDERS'
 
-
 /**
  * INITIAL STATE
  */
@@ -14,7 +13,7 @@ const allOrders = []
 /**
  * ACTION CREATORS
  */
-const addOrders = orders => ({
+const getOrders = orders => ({
   type: GET_ALL_ORDERS,
   orders
 })
@@ -26,7 +25,7 @@ export const fetchAllOrders = () =>
   dispatch =>
     axios.get('/api/orders')
     .then(orders => {
-        return  dispatch(addOrders(orders.data))
+        return  dispatch(getOrders(orders.data))
       }
     )
     .catch(err => console.log(err))

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchAllOrders } from '../store'
 
 class ViewAllOrders extends Component {
@@ -31,10 +32,14 @@ class ViewAllOrders extends Component {
           <tbody>
             {orders.length && orders.map((order, i) => (
               <tr key={order.id}>
-                <td>{order.id}</td>
+                <td>
+                  <Link to={`/orders/${order.id}`}>
+                    {order.id}
+                  </Link>
+                </td>
                 <td>{orderDates[i]}</td>
                 <td>{order.orderAmount}</td>
-                <td>{order.price}</td>
+                <td>{order.orderPrice}</td>
                 <td>{order.userId}</td>
               </tr>
             ))}
