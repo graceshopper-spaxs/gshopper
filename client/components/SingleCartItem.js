@@ -28,10 +28,10 @@ class SingleCartItem extends Component {
         return (
             <li>
                 <Link to={`/ingredients/${itemOnCart.ingredientId}`}>
-                    {productInfo.name} 
+                    {productInfo.name + "    "}
                 </Link>
 
-                ID: {itemOnCart.ingredientId} Quantity: {itemOnCart.quantity}
+                Quantity: {itemOnCart.quantity}
 
                 {//check if its cart view or past order and disables button if its a past order
                     activeOrder && (<div>

@@ -16,11 +16,13 @@ const OrderHistory = ({ orders, productInformation }) => {
     })
 
     const MappedOrderHistory = OrdersWithOrderItems.map((order, index) => {
-        return <li>
+        return <li key={index}>
             <h2>{`Order #${index + 1}`}</h2>
             <CartView productInformation={productInformation} cartItems={order} onCart={false} />
         </li>
     })
+
+    console.log(OrdersWithOrderItems)
 
     return (
         <div>
