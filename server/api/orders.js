@@ -23,3 +23,13 @@ router.post('/', (req, res, next) => {
         .then(() => res.send('order made'))
         .catch(next)
 })
+
+
+// Get all orders
+router.get('/', (req, res, next) => {
+    Order.findAll()
+        .then(orders => {
+            res.json(orders)
+        })
+        .catch(next)
+})

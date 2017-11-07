@@ -72,9 +72,8 @@ export const deleteSessionItem = (ingredientId, isLoggedIn) =>
 export const checkoutCart = ({ userId, orderAmount, orderPrice, address, cart }, history) =>
     dispatch => {
         axios.post('/api/orders', { userId, orderAmount, orderPrice, address, cart })
-            .then(order => {
-                console.log("Working")
-                axios.put(`/cart/${userId}`,{})
+            .then(() => {
+                axios.put(`/cart/${userId}`, {})
             })
             .then(() => {
                 dispatch(emptyCart())

@@ -1,7 +1,9 @@
 import React from 'react'
+import { Link, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import ProductPoster from './ProductPoster'
+// import ProductPoster from './ProductPoster'
+// import ViewAllOrders from './ViewAllOrders'
 
 /**
  * COMPONENT
@@ -16,9 +18,11 @@ export const UserHome = (props) => {
       {
         props.user.userType === 'admin' &&
         <div>
-            <ProductPoster />
+          <label>Admin Functionality:</label>
+          <Link to="/product-post">Post An Ingredient</Link>
+          <Link to="/view-all-orders">View All Orders</Link>
         </div>
-    }
+      }
     </div>
   )
 }
