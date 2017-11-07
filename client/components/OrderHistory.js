@@ -24,11 +24,16 @@ class OrderHistory extends Component {
         })
 
         const MappedOrderHistory = OrdersWithOrderItems.map((order, index) => {
+            const orderTime = order[0].createdAt.split('T')
+            
             return <li key={index}>
                 <h2>{`Order #${index + 1}`}</h2>
+                <h3>{`Order Date: ${orderTime[0]}`}</h3>
                 <CartView productInformation={productInformation} cartItems={order} onCart={false} />
             </li>
         })
+
+        console.log(OrdersWithOrderItems)
 
         return (
             <div>
