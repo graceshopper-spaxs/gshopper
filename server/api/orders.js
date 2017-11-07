@@ -24,10 +24,20 @@ router.post('/', (req, res, next) => {
         .catch(next)
 })
 
-router.get('/:userId', (req,res,next) => {
+router.get('/users/:userId', (req,res,next) => {
     const userId = req.params.userId
     Order.findAll({where: {userId}, include:[{all:true}]})
     .then(orders => res.json(orders))
+})
+// Get one order
+router.get('/:orderId', (req, res, next) => {
+    OrderIngredient.findAll({
+        where: {
+            orderId: req.params.orderId
+        }
+    })
+    .then(order => res.json(order))
+    .catch(next)
 })
 
 // Get all orders
@@ -39,17 +49,8 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-// Get one order
-router.get('/:orderId', (req, res, next) => {
-    OrderIngredient.findAll({
-        where: {
-            orderId: req.params.orderId
-        }
-    })
-    .then(order => res.json(order))
-    .catch(next)
-})
-router.put('/:orderid',(req, res, next) => {
+//get user orders
+router.put('/user/:orderid',(req, res, next) => {
     const newStatus = req.body.status;
     const orderId = req.params.orderid;
     Order.findById(orderId)
@@ -63,3 +64,5 @@ router.put('/:orderid',(req, res, next) => {
     })
     .catch(next)    
 })
+
+
