@@ -77,8 +77,8 @@ class DisplaySingleProduct extends React.Component {
                             <ProductEditor ingredient={theProduct} />
                         </div>
                     }
+                    <Review /> 
                 </div>
-
             )
         } else {
             return <div> </div>
