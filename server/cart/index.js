@@ -71,7 +71,7 @@ router.put('/db/', (req, res, next) => {
     Cart.findOne({
         where: {
             userId,
-            ingredientId: add.ingredientId,
+            ingredientId: update.ingredientId,
             inCart: true
         }
     })
