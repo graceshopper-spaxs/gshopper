@@ -7,7 +7,7 @@ import AddButton from "./button"
 export const displayProduct = (props) => {
 	//I'm assuming each ingredient from our database has these properties
   //Have not yet implemeneted keys with id due to limit of dummy data
-	const {id, image, name, price, servingSize, calories} = props.ingredient;
+	const {id, image, name, price, servingSize, calories, inventory} = props.ingredient;
   return (
     <div className="displayProduct">
       <img className="displayProductImage" src={image} height="82" width="82"/>
@@ -25,7 +25,12 @@ export const displayProduct = (props) => {
       <p className="displayProductCalories">
       	{calories} calories.
       </p>
-      <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} ingredientId={id} quantity={1}/>
+
+      {
+        inventory ?
+        <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} ingredientId={id} quantity={1}/>
+        : <h4>Out of Inventory</h4>
+      }
     </div>
   )
 }
