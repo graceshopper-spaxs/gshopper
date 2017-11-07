@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const GET_CATEGORIES = 'GET_CATEGORIES'
 const ADD_CATEGORY = 'ADD_CATEGORY'
+const REMOVE_CATEGORY = 'REMOVE_CATEGORY'
 
 /**
  * INITIAL STATE
@@ -15,6 +16,8 @@ const categories = []
  * ACTION CREATORS
  */
 const getCategories = categories => ({type: GET_CATEGORIES, categories})
+const addCategory = category => ({type: ADD_CATEGORY, category})
+const removeCategory = category => ({type: REMOVE_CATEGORY, category})
 
 /**
  * THUNK CREATORS
@@ -30,9 +33,18 @@ export const fetchCategories = () =>
 
 export const postCategory = (category) =>
   dispatch =>
-    axios.post('/api/categories', {category})
+    axios.post('/api/categories', category)
     .then(category => {
         dispatch(addCategory(category.data))
+      }
+    )
+    .catch(err => console.log(err))
+
+export const deletesCategory = (categoryId) =>
+  dispatch =>
+    axios.delete('api/categories/'+categoryId)
+      .then(category => {
+        dispatch(removeCategory(categoryId))
       }
     )
     .catch(err => console.log(err))
@@ -48,7 +60,11 @@ export default function (state = categories, action) {
       return action.categories
 
     case ADD_CATEGORY:
-      return [...state, category]
+      return [...state, action.category]
+
+    case REMOVE_CATEGORY:
+      console.log(state)
+      return state.filter(category => category.id !== parseInt(action.category))
 
     default:
       return state

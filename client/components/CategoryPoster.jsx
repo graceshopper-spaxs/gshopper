@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {add} from "../reducers/campusReducer";
-import CategoryForm from "./CategoryForm";
+import {postCategory} from "../store/category";
+import CategoryForm from "./CategoryForm.jsx";
 
 class CategoryPoster extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class CategoryPoster extends Component {
   submitHandler(evt){
     evt.preventDefault();
     this.props.handleSubmit(this.state, evt);
-    this.setState({category:"");
+    this.setState({category:""});
   }
 
   render() {
@@ -32,7 +32,7 @@ class CategoryPoster extends Component {
     return (
       <div>
           Add new category:
-          <CampusForm 
+          <CategoryForm 
             handleChange={handleChange}
             submitHandler={submitHandler}
             state={this.state}
@@ -43,8 +43,8 @@ class CategoryPoster extends Component {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleSubmit(student, evt){
-    dispatch(addCampus(student));
+  handleSubmit(category, evt){
+    dispatch(postCategory(category));
   }
 });
 

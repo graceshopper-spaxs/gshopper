@@ -13,6 +13,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   if(req.user.userType === "admin"){
+    console.log(req.body)
     Category.create(req.body)
     .then(category => res.json(category))
     .catch(next)
@@ -21,9 +22,10 @@ router.post('/', (req, res, next) => {
 
 router.delete('/:categoryId', (req, res, next) => {
   if(req.user.userType === "admin"){
-    Category.findById(req.params.categoryId)
+    console.log(req.params.categoryId)
+    Category.findById(parseInt(req.params.categoryId))
     .then(category => category.destroy())
-    .then(res.send("Deletion successful"))
+    .then(category => res.json(category))
     .catch(next)
   } else res.send("UNAUTHORIZED REQUEST")
 })
