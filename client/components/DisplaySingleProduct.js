@@ -58,6 +58,7 @@ class DisplaySingleProduct extends React.Component {
                         <h4>Out of Inventory</h4>
                     }
                     {
+                        !!theProduct.inventory &&
                         <div>
                             <select value={this.state.quantitySelected} className="addItemValue" id="selectQuantity" onChange={event => this.setState({ quantitySelected: event.target.value })}>
                                 <option> 1</option>
