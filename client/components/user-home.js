@@ -1,15 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import ProductPoster from './ProductPoster'
 
 /**
  * COMPONENT
  */
 export const UserHome = (props) => {
-  const {firstName} = props.user
+  const { firstName } = props.user
   return (
     <div>
-      <h3>Welcome, {firstName}!</h3>
+      <div>
+        <h3>Welcome, {firstName}!</h3>
+      </div>
+      {
+        props.user.userType === 'admin' &&
+        <div>
+            <ProductPoster />
+        </div>
+    }
     </div>
   )
 }
