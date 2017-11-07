@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import SingleCartItem from './SingleCartItem'
 
 const cartView = (props) => {
+    if(!props.cartItems.length) return <div> Add Items! </div> 
     //helper function to match items on cart to their corresponding product information
     function productInfo(itemOnCart) {
         return props.productInformation.find(product => +product.id === +itemOnCart.ingredientId)
@@ -16,14 +17,22 @@ const cartView = (props) => {
         )
     })
 
+    const subTotal = props.cartItems.reduce((cartPrice, currentItem) => {
+        return cartPrice + productInfo(currentItem).price * currentItem.quantity
+    }, 0) || 0
+
     return (
         <div>
             <ul>{mappedCartItems}</ul>
-            {props.onCart && props.cartItems.length > 0 && <button>
-                <Link to='/checkout'>
-                    Checkout!
+            {props.onCart && props.cartItems.length > 0 && <div>
+                <p>{`Subtotal: $${subTotal}`}</p>
+                <button>
+                    <Link to='/checkout'>
+                        Checkout!
                 </Link>
-            </button>}
+                </button>
+            </div>
+            }
         </div>
     )
 }

@@ -33,8 +33,7 @@ class OrderHistory extends Component {
             </li>
         })
 
-        console.log(OrdersWithOrderItems)
-
+    
         return (
             <div>
                 <h1>Order History</h1>
