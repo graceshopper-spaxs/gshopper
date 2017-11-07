@@ -1,34 +1,21 @@
-/**
- * Welcome to the seed file! This seed file uses a newer language feature called...
- *
- *                  -=-= ASYNC...AWAIT -=-=
- *
- * Async-await is a joy to use! Read more about it in the MDN docs:
- *
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
- *
- * Now that you've got the main idea, check it out in practice below!
- */
 const db = require('../server/db')
-const {User, Ingredient, Order, OrderIngredient} = require('../server/db/models')
+const {User, Ingredient, Order, OrderIngredient, Review} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
   console.log('db synced!')
-  // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-  // executed until that promise resolves!
+
 
   const users = await Promise.all([
-    User.create({firstName: 'sisi', lastName: 'qin', email: 'sisi@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'phil', lastName: 'qin', email: 'phil@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'arthur', lastName: 'qin', email: 'athur@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'sam', lastName: 'qin', email: 'sam@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'simon', lastName: 'qin', email: 'simon@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'dog', lastName: 'qin', email: 'dog@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
-    User.create({firstName: 'cat', lastName: 'qin', email: 'cat@email.com', password: '123', address: '1234 dog st', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'sisi', lastName: 'qin', email: 'sisi@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'phil', lastName: 'qin', email: 'phil@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'arthur', lastName: 'qin', email: 'athur@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'sam', lastName: 'qin', email: 'sam@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'simon', lastName: 'qin', email: 'simon@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'dog', lastName: 'qin', email: 'dog@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
+    User.create({firstName: 'cat', lastName: 'qin', email: 'cat@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
   ])
-  // Wowzers! We can even `await` on the right-hand side of the assignment operator
-  // and store the result that the promise resolves to in a variable! This is nice!
+
   
   const ingredients = await Promise.all([
     Ingredient.create({name: 'foodone', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png', category: "vegetables"} ),
@@ -44,11 +31,11 @@ async function seed () {
   ])
   
   const orders = await Promise.all([
-    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50, orderAmount: 3}),
-    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50, orderAmount: 5}),
-    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50, orderAmount: 34}),
-    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50, orderAmount: 5}),
-    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50, orderAmount: 60})
+    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50, orderAmount: 3,address: '1234 dog st'}),
+    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50, orderAmount: 5, address: '1234 dog st',}),
+    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50, orderAmount: 34, address: '1234 dog st',}),
+    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50, orderAmount: 5, address: '1234 dog st',}),
+    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50, orderAmount: 60, address: '1234 dog st',})
   ])
 
   const orderingredient = await Promise.all([
@@ -63,19 +50,34 @@ async function seed () {
 
 
 
+  const reviews = await Promise.all([
+    Review.create({like: true, userId: 1})
+    .then(review => review.setIngredients(1)),
+    Review.create({like: false, userId: 1})
+    .then(review => review.setIngredients(2)),
+    Review.create({like: false, userId: 1})
+    .then(review => review.setIngredients(2)),
+    Review.create({like: true, userId: 1})
+    .then(review => review.setIngredients(3)),
+    Review.create({like: true, userId: 2})
+    .then(review => review.setIngredients(1)),
+    Review.create({like: true, userId: 3})
+    .then(review => review.setIngredients(4)),
+    Review.create({like: false, userId: 3})
+    .then(review => review.setIngredients(6)),
+    Review.create({like: true, userId: 4})
+    .then(review => review.setIngredients(1)),
+  ]) 
 
-
-
-
+// checkout seeding
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${ingredients.length} ingredients`)
   console.log(`seeded ${orders.length} orders`)
+  console.log(`seeded ${reviews.length} reviews`)
   console.log(`seeded successfully`)
 }
 
-// Execute the `seed` function
-// `Async` functions always return a promise, so we can use `catch` to handle any errors
-// that might occur inside of `seed`
+
 seed()
   .catch(err => {
     console.error(err.message)
@@ -88,9 +90,5 @@ seed()
     console.log('db connection closed')
   })
 
-/*
- * note: everything outside of the async function is totally synchronous
- * The console.log below will occur before any of the logs that occur inside
- * of the async function
- */
+
 console.log('seeding...')

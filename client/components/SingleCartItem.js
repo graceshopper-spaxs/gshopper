@@ -27,22 +27,22 @@ class SingleCartItem extends Component {
 
         return (
             <li>
-                <Link to={`/ingredients/${itemOnCart.item_id}`}>
+                <Link to={`/ingredients/${itemOnCart.ingredientId}`}>
                     {productInfo.name}
                 </Link>
 
-                ID: {itemOnCart.item_id} Quantity: {itemOnCart.quantity}
+                ID: {itemOnCart.ingredientId} Quantity: {itemOnCart.quantity}
 
                 {//check if its cart view or past order and disables button if its a past order
                     activeOrder && (<div>
                         <Button
                             buttonType={"REMOVE_ITEM"}
                             buttonText={"DELETE"}
-                            item_id={itemOnCart.item_id} />
+                            ingredientId={itemOnCart.ingredientId} />
                         <Button
                             buttonType={"UPDATE_ITEM"}
                             buttonText={"UPDATE"}
-                            item_id={itemOnCart.item_id}
+                            ingredientId={itemOnCart.ingredientId}
                             quantity={this.state.selectedQuantity} />
 
                         <select
