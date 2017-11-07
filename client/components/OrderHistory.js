@@ -1,38 +1,58 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import CartView from './CartView'
+import {fetchOrders} from '../store'
 
-const OrderHistory = ({ orders, productInformation }) => {
-    if (!orders.length) return <div> loading </div>
+class OrderHistory extends Component {
 
-    //returns an array with all of the ingredient information for an order but not the actual ordered ingredient
-    const OrdersWithIngredientInfo = orders.map(order => {
-        return order.ingredients
-    })
+    componentDidMount(){
+        this.props.getOrders()
+    }
 
-    //returns an array with all of the orders with their actual ordered items
-    const OrdersWithOrderItems = OrdersWithIngredientInfo.map(order => {
-        return order.map(ingredient => ingredient.orderIngredient)
-    })
+    render() {
+        const {orders, productInformation} = this.props 
+        if (!orders.length) return <div> loading </div>
 
-    const MappedOrderHistory = OrdersWithOrderItems.map((order, index) => {
-        return <li key={index}>
-            <h2>{`Order #${index + 1}`}</h2>
-            <CartView productInformation={productInformation} cartItems={order} onCart={false} />
-        </li>
-    })
+        //returns an array with all of the ingredient information for an order but not the actual ordered ingredient
+        const OrdersWithIngredientInfo = orders.map(order => {
+            return order.ingredients
+        })
 
-    return (
-        <div>
-            <h1>Order History</h1>
-            <ul>{MappedOrderHistory}</ul>
-        </div>
-    )
+        //returns an array with all of the orders with their actual ordered items
+        const OrdersWithOrderItems = OrdersWithIngredientInfo.map(order => {
+            return order.map(ingredient => ingredient.orderIngredient)
+        })
+
+        const MappedOrderHistory = OrdersWithOrderItems.map((order, index) => {
+            return <li key={index}>
+                <h2>{`Order #${index + 1}`}</h2>
+                <CartView productInformation={productInformation} cartItems={order} onCart={false} />
+            </li>
+        })
+
+        return (
+            <div>
+                <h1>Order History</h1>
+                <ul>{MappedOrderHistory}</ul>
+            </div>
+        )
+    }
 }
 
 const mapState = state => ({
-    productInformation: state.ingredient
+    productInformation: state.ingredient,
+    orders : state.orders
 })
 
+const mapDispatch = (dispatch, ownProps) => {
+    return {
+        getOrders() {
+            const userId = ownProps.user.id
+            const thunk = fetchOrders(userId)
+            dispatch(fetchOrders(userId))
+        }
+    }
+}
 
-export default connect(mapState)(OrderHistory)
+
+export default connect(mapState, mapDispatch)(OrderHistory)

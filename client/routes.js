@@ -21,7 +21,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn, allIngredients, orders} = this.props
+    const { isLoggedIn, allIngredients, orders, user} = this.props
 
     return (
       <Router history={history}>
@@ -41,7 +41,7 @@ class Routes extends Component {
                   {/* Routes placed here are only available after logging in */}
                   <Route path="/home" component={UserHome} />
                   <Route exact path="/user" component={DisplaySingleUser} />
-                  <Route exact path="/orderhistory" render={()=>(<OrderHistory orders={orders}/>)}/>
+                  <Route exact path="/orderhistory" render={()=>(<OrderHistory user={user}/>)}/>
                   <Route path="/checkout" component={Checkout} />
                 </Switch>
             }
@@ -64,7 +64,8 @@ const mapState = (state) => {
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     allIngredients: state.ingredient,
-    orders: state.user.orders
+    orders: state.user.orders,
+    user : state.user
   }
 }
 
