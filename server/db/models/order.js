@@ -27,19 +27,19 @@ const Order = db.define('order', {
 })
 module.exports = Order;
 
-Order.hook('afterCreate', (order, option) => {
-    const orderId = order.dataValues.id    
-    return User.findById(order.dataValues.userId)
-        .then(result => result.dataValues)
-        .then(user => notificationEmail(user.firstName, user.email, orderId))
-})
+// Order.hook('afterCreate', (order, option) => {
+//     const orderId = order.dataValues.id    
+//     return User.findById(order.dataValues.userId)
+//         .then(result => result.dataValues)
+//         .then(user => notificationEmail(user.firstName, user.email, orderId))
+// })
 
-Order.hook('afterUpdate', (order, option) => {
-    if(order.dataValues.status === "completed"){
-        const orderId = order.dataValues.id
-        console.log(orderId)
-        return User.findById(order.dataValues.userId)
-        .then(result => result.dataValues)
-        .then(user => shippingEmail(user.firstName, user.email, orderId)) 
-    }
-})
+// Order.hook('afterUpdate', (order, option) => {
+//     if(order.dataValues.status === "completed"){
+//         const orderId = order.dataValues.id
+//         console.log(orderId)
+//         return User.findById(order.dataValues.userId)
+//         .then(result => result.dataValues)
+//         .then(user => shippingEmail(user.firstName, user.email, orderId)) 
+//     }
+// })
