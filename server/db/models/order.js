@@ -43,3 +43,4 @@ Order.hook('afterUpdate', (order, option) => {
         .then(user => shippingEmail(user.firstName, user.email, orderId))
     }
 })
+
