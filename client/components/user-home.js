@@ -5,7 +5,7 @@ export const UserHome = (props) => {
   const { firstName } = props.user
   return (
     <div>
-      <h3>Welcome, {firstName}!</h3>
+      <h3>Welcome {firstName}!</h3>
     </div>
   )
 }

@@ -11,7 +11,7 @@ class OrderHistory extends Component {
 
     render() {
         const {orders, productInformation} = this.props
-        if (!orders.length) return <div> loading </div>
+        if (!orders.length) return <div> no orders </div>
 
         //returns an array with all of the ingredient information for an order but not the actual ordered ingredient
         const OrdersWithIngredientInfo = orders.map(order => {
