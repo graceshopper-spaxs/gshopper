@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import FilterSearchInput from './FilterSearchInput';
-import { displayAllProducts as DisplayAllProducts } from './displayAllProducts.jsx';
+import React from 'react'
+import { connect } from 'react-redux'
+import FilterSearchInput from './FilterSearchInput'
+import { displayAllProducts as DisplayAllProducts } from './displayAllProducts'
 
 class FilterableIngredients extends React.Component {
 
@@ -10,9 +10,9 @@ class FilterableIngredients extends React.Component {
     this.state = {
       filterSearchInput: '',
       category: 'all'
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(evt) {
@@ -22,7 +22,7 @@ class FilterableIngredients extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
   }
 
   render() {
@@ -31,7 +31,7 @@ class FilterableIngredients extends React.Component {
         return ingredientCategory.id === parseInt(this.state.category)
       })) {
         return true
-      } else return false
+      } else { return false }
     })
     const filteredIngredients = filterByCategory.filter(ingredient =>
       ingredient.name.match(this.state.filterSearchInput));

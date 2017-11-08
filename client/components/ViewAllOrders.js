@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchAllOrders } from '../store'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
 
 class ViewAllOrders extends Component {
   componentDidMount() {
@@ -19,32 +27,35 @@ class ViewAllOrders extends Component {
     return (
       <div>
         VIEW ALL ORDERS
-        <table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Checkout Date</th>
-              <th>Amount</th>
-              <th>Price</th>
-              <th>User ID</th>
-            </tr>
-          </thead>
-          <tbody>
+
+        <Table selectable={false}>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Order ID</TableHeaderColumn>
+              <TableHeaderColumn>Checkout Date</TableHeaderColumn>
+              <TableHeaderColumn>Amount</TableHeaderColumn>
+              <TableHeaderColumn>Price</TableHeaderColumn>
+              <TableHeaderColumn>User ID</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {orders.length && orders.map((order, i) => (
-              <tr key={order.id}>
-                <td>
-                  <Link to={`/orders/${order.id}`}>
-                    {order.id}
-                  </Link>
-                </td>
-                <td>{orderDates[i]}</td>
-                <td>{order.orderAmount}</td>
-                <td>{order.orderPrice}</td>
-                <td>{order.userId}</td>
-              </tr>
+              <TableRow key={order.id}>
+                <TableRowColumn>
+                  <button>
+                    <Link to={`/orders/${order.id}`}>
+                      {order.id}
+                    </Link>
+                  </button>
+                </TableRowColumn>
+                <TableRowColumn>{orderDates[i]}</TableRowColumn>
+                <TableRowColumn>{order.orderAmount}</TableRowColumn>
+                <TableRowColumn>{order.orderPrice}</TableRowColumn>
+                <TableRowColumn>{order.userId}</TableRowColumn>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     )
   }
@@ -60,4 +71,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewAllOrders);
+export default connect(mapStateToProps, mapDispatchToProps)(ViewAllOrders)

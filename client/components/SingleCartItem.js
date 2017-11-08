@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-import _ from 'lodash'
-
+import { Link } from 'react-router-dom'
 import Button from './button'
 
 class SingleCartItem extends Component {
@@ -31,20 +29,20 @@ class SingleCartItem extends Component {
             <li>
                 <p>
                     <Link to={`/ingredients/${itemOnCart.ingredientId}`}>
-                        {productInfo.name + "    "}
+                        {productInfo.name + '    '}
                     </Link>
-                    Quantity: {itemOnCart.quantity}         
+                    Quantity: {itemOnCart.quantity}
                     Price:${itemPrice}
                 </p>
                 {//check if its cart view or past order and disables button if its a past order
                     activeOrder && (<div>
                         <Button
-                            buttonType={"REMOVE_ITEM"}
-                            buttonText={"DELETE"}
+                            buttonType={'REMOVE_ITEM'}
+                            buttonText={'DELETE'}
                             ingredientId={itemOnCart.ingredientId} />
                         <Button
-                            buttonType={"UPDATE_ITEM"}
-                            buttonText={"UPDATE"}
+                            buttonType={'UPDATE_ITEM'}
+                            buttonText={'UPDATE'}
                             ingredientId={itemOnCart.ingredientId}
                             quantity={this.state.selectedQuantity} />
 

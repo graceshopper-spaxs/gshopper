@@ -10,17 +10,17 @@ enzyme.configure({adapter})
 describe('CartView', () => {
   let cartView
  const cartItems = [
-     {item_id: 1, quantity: 1},
-     {item_id: 2, quantity: 4},
-     {item_id: 3, quantity: 6},
-     {item_id: 4, quantity: 8}
+     {itemId: 1, quantity: 1},
+     {itemId: 2, quantity: 4},
+     {itemId: 3, quantity: 6},
+     {itemId: 4, quantity: 8}
  ]
 
  const productInformation = [
-     {id: 1, name: "food", price: 5},
-     {id: 2, name: "food", price: 5},
-     {id: 3, name: "food", price: 5},
-     {id: 4, name: "food", price: 5}
+     {id: 1, name: 'food', price: 5},
+     {id: 2, name: 'food', price: 5},
+     {id: 3, name: 'food', price: 5},
+     {id: 4, name: 'food', price: 5}
  ]
 
   beforeEach(() => {

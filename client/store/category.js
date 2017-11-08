@@ -1,5 +1,6 @@
 import axios from 'axios'
-import {fetchIngredients} from './index';
+import {fetchIngredients} from './index'
+
 /**
  * ACTION TYPES
  */
@@ -15,7 +16,7 @@ const categories = []
 /**
  * ACTION CREATORS
  */
-const getCategories = categories => ({ type: GET_CATEGORIES, categories })
+const getCategories = allCategories => ({ type: GET_CATEGORIES, allCategories })
 const addCategory = category => ({ type: ADD_CATEGORY, category })
 const removeCategory = category => ({ type: REMOVE_CATEGORY, category })
 
@@ -33,15 +34,15 @@ export const fetchCategories = () =>
 export const postCategory = (category) =>
   dispatch =>
     axios.post('/api/categories', category)
-      .then(category => {
-        dispatch(addCategory(category.data))
+      .then(cat => {
+        dispatch(addCategory(cat.data))
       })
       .catch(err => console.log(err))
 
 export const deletesCategory = (categoryId) =>
   dispatch =>
     axios.delete('api/categories/' + categoryId)
-      .then(category => {
+      .then(() => {
         dispatch(removeCategory(categoryId))
       })
       .catch(err => console.log(err))
@@ -69,7 +70,7 @@ export const unassignCategory = (categoryId, ingredientId) =>
 export default function (state = categories, action) {
   switch (action.type) {
     case GET_CATEGORIES:
-      return action.categories
+      return action.allCategories
 
     case ADD_CATEGORY:
       return [...state, action.category]

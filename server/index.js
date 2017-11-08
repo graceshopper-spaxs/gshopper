@@ -33,7 +33,7 @@ passport.deserializeUser((id, done) =>
     where: { id },
     include: [Cart, {
       model: Order,
-      include : [{all: true}]
+      include: [{all: true}]
     }]
   })
     .then(user => done(null, user))

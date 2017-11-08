@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { unassignCategory } from '../store/category';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { unassignCategory } from '../store/category'
 
 class CategoryUnassigner extends Component {
   constructor(props) {
@@ -21,13 +21,13 @@ class CategoryUnassigner extends Component {
 
   render() {
     const submitHandler = this.submitHandler;
-    const { categories, ingredients } = this.props;
+    const { categories } = this.props;
     let filteredCategories = categories.filter(category => {
-      if(this.props.ingredient.categories.find((ingredientCategory)=>{
+      if (this.props.ingredient.categories.find((ingredientCategory) => {
         return ingredientCategory.id === category.id
-      })){
+      })) {
         return true
-      } else return false
+      } else { return false }
     })
 
     return (
@@ -40,10 +40,10 @@ class CategoryUnassigner extends Component {
             <select name="category">
               {
                 filteredCategories.map(category => {
-                return (
-                  <option key={category.id} value={category.id}>{category.category}</option>
-                )
-              })}
+                  return (
+                    <option key={category.id} value={category.id}>{category.category}</option>
+                  )
+                })}
             </select>
             <button type="submit">Remove</button>
           </div>

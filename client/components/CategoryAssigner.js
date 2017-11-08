@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { assignCategory } from '../store/category';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { assignCategory } from '../store/category'
 
 class CategoryAssigner extends Component {
   constructor(props) {
@@ -21,13 +21,13 @@ class CategoryAssigner extends Component {
 
   render() {
     const submitHandler = this.submitHandler;
-    const { categories, ingredients } = this.props;
+    const { categories } = this.props;
     let filteredCategories = categories.filter(category => {
-      if(this.props.ingredient.categories.find((ingredientCategory)=>{
+      if (this.props.ingredient.categories.find((ingredientCategory) => {
         return ingredientCategory.id === category.id
-      })){
+      })) {
         return false
-      } else return true
+      } else { return true }
     })
     return (
 
@@ -39,10 +39,10 @@ class CategoryAssigner extends Component {
             <select name="category">
               {
                 filteredCategories.map(category => {
-                return (
-                  <option key={category.id} value={category.id}>{category.category}</option>
-                )
-              })}
+                  return (
+                    <option key={category.id} value={category.id}>{category.category}</option>
+                  )
+                })}
             </select>
             <button type="submit">Assign</button>
           </div>

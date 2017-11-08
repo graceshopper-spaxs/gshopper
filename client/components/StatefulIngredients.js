@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import FilterableIngredients from './FilterableIngredients';
+import React from 'react'
+import {connect} from 'react-redux'
+import FilterableIngredients from './FilterableIngredients'
 
 const StatefulIngredients = ({ingredients}) => {
 

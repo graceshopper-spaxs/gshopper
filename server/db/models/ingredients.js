@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Ingredient = db.define('ingredient', { 
-    name:{
+const Ingredient = db.define('ingredient', {
+    name: {
         type: Sequelize.STRING,
         unique: true,
         allowNull: false
@@ -41,17 +41,17 @@ const Ingredient = db.define('ingredient', {
     },
     inventory: {
         type: Sequelize.INTEGER,
-        allowNull: false 
+        allowNull: false
     },
     servingSize: {
         type: Sequelize.INTEGER,
-        allowNull: false 
+        allowNull: false
     },
     image: {
         type: Sequelize.STRING,
-        allowNull: false 
+        allowNull: false
     }
-} 
+}
 )
 
 module.exports = Ingredient;
