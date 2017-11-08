@@ -17,9 +17,13 @@ const cartView = (props) => {
         )
     })
 
-    const subTotal = props.cartItems.reduce((cartPrice, currentItem) => {
+    let subTotal = 0
+   
+    //wait for both cart and product to load
+    if(props.cartItems.length > 0 && props.productInformation.length > 0) {
+     subTotal = props.cartItems.reduce((cartPrice, currentItem) => {
         return cartPrice + productInfo(currentItem).price * currentItem.quantity
-    }, 0) || 0
+    }, 0) }
 
     return (
         <div>
