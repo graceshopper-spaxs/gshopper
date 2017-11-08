@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const {Ingredient, Review} = require('../db/models')
+const {Ingredient, Review, Category} = require('../db/models')
 
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Ingredient.findAll()
+  Ingredient.findAll({include: [Category]})
     .then(ingredients => res.json(ingredients))
     .catch(next)
 })
@@ -32,7 +32,6 @@ router.post('/:id/addreview', (req, res, next) => {
    .then(review => review.setIngredients(ingredientId))
    .then(newReview => newReview[0][0].dataValues.reviewId)
    .then(id => {
-      console.log("11111", id)
       return Review.findById(id)
      .then(res =>  res.dataValues)
      .then(review => res.json(review))

@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {fetchIngredients} from './index';
 /**
  * ACTION TYPES
  */
@@ -15,9 +15,9 @@ const categories = []
 /**
  * ACTION CREATORS
  */
-const getCategories = categories => ({type: GET_CATEGORIES, categories})
-const addCategory = category => ({type: ADD_CATEGORY, category})
-const removeCategory = category => ({type: REMOVE_CATEGORY, category})
+const getCategories = categories => ({ type: GET_CATEGORIES, categories })
+const addCategory = category => ({ type: ADD_CATEGORY, category })
+const removeCategory = category => ({ type: REMOVE_CATEGORY, category })
 
 /**
  * THUNK CREATORS
@@ -25,32 +25,44 @@ const removeCategory = category => ({type: REMOVE_CATEGORY, category})
 export const fetchCategories = () =>
   dispatch =>
     axios.get('/api/categories')
-    .then(categories => {
+      .then(categories => {
         dispatch(getCategories(categories.data))
-      }
-    )
-    .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
 
 export const postCategory = (category) =>
   dispatch =>
     axios.post('/api/categories', category)
-    .then(category => {
+      .then(category => {
         dispatch(addCategory(category.data))
-      }
-    )
-    .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
 
 export const deletesCategory = (categoryId) =>
   dispatch =>
-    axios.delete('api/categories/'+categoryId)
+    axios.delete('api/categories/' + categoryId)
       .then(category => {
         dispatch(removeCategory(categoryId))
-      }
-    )
-    .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
 
+export const assignCategory = (categoryId, ingredientId) =>
+  dispatch =>
+    axios.put('/api/categories/assign', { categoryId, ingredientId })
+      .then(result => {
+        dispatch(fetchIngredients());
+        return result
+      })
+      .catch(err => console.log(err))
 
-
+export const unassignCategory = (categoryId, ingredientId) =>
+  dispatch =>
+    axios.put('/api/categories/unassign', { categoryId, ingredientId })
+      .then(result => {
+        dispatch(fetchIngredients())
+        return result
+      })
+      .catch(err => console.log(err))
 /**
  * REDUCER
  */
