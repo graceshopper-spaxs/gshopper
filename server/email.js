@@ -7,14 +7,14 @@ const notificationEmail = (userName, userEmail, orderId) => {
         service: 'gmail',
         secure: false,
         port: 25,
-        auth:{
+        auth: {
             user: 'caloriecart.emailsender@gmail.com',
             pass: 'CalorieCartEmail'
         },
         tls: {
             rejectUnauthorized: false
         }
-    }); 
+    });
 
 
     let mailOptions = {
@@ -41,14 +41,14 @@ const shippingEmail = (userName, userEmail, orderId) => {
         service: 'gmail',
         secure: false,
         port: 25,
-        auth:{
+        auth: {
             user: 'caloriecart.emailsender@gmail.com',
             pass: 'CalorieCartEmail'
         },
         tls: {
             rejectUnauthorized: false
         }
-    }); 
+    });
 
 
     let mailOptions = {
@@ -66,4 +66,4 @@ const shippingEmail = (userName, userEmail, orderId) => {
     });
 }
 
-module.exports = {notificationEmail, shippingEmail} ; 
+module.exports = {notificationEmail, shippingEmail} ;

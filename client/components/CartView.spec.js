@@ -17,10 +17,10 @@ describe('CartView', () => {
  ]
 
  const productInformation = [
-     {id: 1, name: "food", price: 5},
-     {id: 2, name: "food", price: 5},
-     {id: 3, name: "food", price: 5},
-     {id: 4, name: "food", price: 5}
+     {id: 1, name: 'food', price: 5},
+     {id: 2, name: 'food', price: 5},
+     {id: 3, name: 'food', price: 5},
+     {id: 4, name: 'food', price: 5}
  ]
 
   beforeEach(() => {

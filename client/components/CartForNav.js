@@ -17,15 +17,15 @@ const CartComponent = (props) => {
 
         return (
             <div>
-                <Link to='/cartview'>CART</Link>: {totalItemsonCart} items Calories: {totalCaloriesOnCart}
+                <Link to="/cartview">CART</Link>: {totalItemsonCart} items Calories: {totalCaloriesOnCart}
             </div>
         )
     }
-    else return (
+    else {return (
         <div>
-            <Link to='/cartview'>CART</Link>: 0 items Calories: 0
+            <Link to="/cartview">CART</Link>: 0 items Calories: 0
         </div>
-)}
+)}}
 
 const mapState = (state) => ({
     itemsOnCart: state.cart,

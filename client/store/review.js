@@ -28,7 +28,7 @@ export const fetchReviews = (ingredientId) => {
 
 export const addOneReview = (ingredientId, userId, bool) => {
     return function thunk(dispatch){
-        axios.post(`/api/ingredients/${ingredientId}/addreview`, {userId:userId, like: bool})
+        axios.post(`/api/ingredients/${ingredientId}/addreview`, {userId: userId, like: bool})
         .then(res => res.data)
         .then(newReview => {
             const action = addReview(newReview)
@@ -38,10 +38,10 @@ export const addOneReview = (ingredientId, userId, bool) => {
     }
 }
 
-//reducer 
+//reducer
 
 export default function (review = allReviews, action) {
-    switch(action.type){
+    switch (action.type){
         case GET_REVIEWS:
         return action.reviews
 

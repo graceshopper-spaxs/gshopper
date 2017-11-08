@@ -10,24 +10,24 @@ router.get('/', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-  if (req.user && req.user.userType === "admin") {
+  if (req.user && req.user.userType === 'admin') {
     Category.create(req.body)
       .then(category => res.json(category))
       .catch(next)
-  } else res.send("UNAUTHORIZED REQUEST")
+  } else {res.send('UNAUTHORIZED REQUEST')}
 })
 
 router.delete('/:categoryId', (req, res, next) => {
-  if (req.user && req.user.userType === "admin") {
+  if (req.user && req.user.userType === 'admin') {
     Category.findById(parseInt(req.params.categoryId))
       .then(category => category.destroy())
       .then(category => res.json(category))
       .catch(next)
-  } else res.send("UNAUTHORIZED REQUEST")
+  } else {res.send('UNAUTHORIZED REQUEST')}
 })
 
 router.put('/assign', (req, res, next) => {
-  if (req.user && req.user.userType === "admin") {
+  if (req.user && req.user.userType === 'admin') {
     Category.findById(req.body.categoryId)
       .then(category => {
         return Ingredient.findById(req.body.ingredientId)
@@ -37,11 +37,11 @@ router.put('/assign', (req, res, next) => {
       })
       .then(res.send('Association successful'))
       .catch(next)
-  } else res.send("UNAUTHORIZED REQUEST")
+  } else {res.send('UNAUTHORIZED REQUEST')}
 })
 
 router.put('/unassign', (req, res, next) => {
-  if (req.user && req.user.userType === "admin") {
+  if (req.user && req.user.userType === 'admin') {
     Category.findById(req.body.categoryId)
       .then(category => {
         return Ingredient.findById(req.body.ingredientId)
@@ -51,5 +51,5 @@ router.put('/unassign', (req, res, next) => {
       })
       .then(res.send('Association successful'))
       .catch(next)
-  } else res.send("UNAUTHORIZED REQUEST")
+  } else {res.send('UNAUTHORIZED REQUEST')}
 })

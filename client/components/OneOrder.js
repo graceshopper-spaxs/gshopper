@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchAllAssociations } from '../store'
 import axios from 'axios'
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow,
+    TableRowColumn,
+} from 'material-ui/Table'
 
 class OneOrder extends Component {
     constructor(props) {
@@ -19,7 +27,7 @@ class OneOrder extends Component {
         const status = event.target.value;
 
         axios.put(`/api/orders/${orderId}`, { status })
-        .catch(err => console.error(err))
+            .catch(err => console.error(err))
     }
 
     render() {
@@ -28,22 +36,22 @@ class OneOrder extends Component {
             <div>
                 <div>
                     Cart:
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Ingredient</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {associations.length && associations.map((item, i) => (
-                            <tr key={i}>
-                                <td><span>id: {item.ingredientId}</span></td>
-                                <td><span>quantity: {item.quantity}</span></td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                    <Table selectable={false}>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderColumn>Ingredient</TableHeaderColumn>
+                                <TableHeaderColumn>Quantity</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {associations.length && associations.map((item, i) => (
+                                <TableRow key={i}>
+                                    <TableRowColumn>{item.ingredientId}</TableRowColumn>
+                                    <TableRowColumn>{item.quantity}</TableRowColumn>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
                 </div>
                 <div className="form-group">
                     <label>Status:</label>

@@ -1,9 +1,7 @@
 import { expect } from 'chai'
-import { addItem, removeItem, updateItem } from './cart'
+import cartReducer, { addItem, removeItem, updateItem } from './cart'
 import configureMockStore from 'redux-mock-store'
-import {createStore, combineReducers, applyMiddleware} from 'redux'
-import cartReducer from './cart'
-
+import { createStore } from 'redux'
 
 const middlewares = []
 const mockStore = configureMockStore(middlewares)
@@ -18,7 +16,7 @@ describe('Cart Reducer', () => {
 
 
     describe('Add item', () => {
-        
+
         it('adds an item to the cart', () => {
             const action = {type: "ADD_ITEM", cartItem: {ingredientId: 1, quantity: 2}}
             store.dispatch(action)
@@ -33,7 +31,7 @@ describe('Cart Reducer', () => {
         })
     })
 
-    describe('Remove item', ()=> {
+    describe('Remove item', () => {
         it('removes an item from the cart', () => {
             const addItemAction = {type: "ADD_ITEM", cartItem: {ingredientId: 1, quantity: 2}}
             const removeItemAction = {type: "REMOVE_ITEM", ingredientId: 1}
@@ -43,7 +41,7 @@ describe('Cart Reducer', () => {
         })
     })
 
-    describe('Update item', ()=> {
+    describe('Update item', () => {
         it('Updates the quantity of an item from the cart', () => {
             const addItemAction = {type: "ADD_ITEM", cartItem: {ingredientId: 1, quantity: 2}}
             const updateItemAction = {type: "UPDATE_ITEM", cartItem: {ingredientId: 1, quantity: 7}}

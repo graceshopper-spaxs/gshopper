@@ -17,7 +17,7 @@ const IngredientForm = (props) => {
             value={props.state.name}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="image">ImageUrl:</label>
           <input
             id="image"
@@ -26,7 +26,7 @@ const IngredientForm = (props) => {
             value={props.state.image}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="calories">Calories:</label>
           <input
             id="calories"
@@ -35,7 +35,7 @@ const IngredientForm = (props) => {
             value={props.state.calories}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="caloriesFromFat">CaloriesFromFat:</label>
           <input
             id="caloriesFromFat"
@@ -44,7 +44,7 @@ const IngredientForm = (props) => {
             value={props.state.caloriesFromFat}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="totalFat">TotalFat:</label>
           <input
             id="totalFat"
@@ -53,7 +53,7 @@ const IngredientForm = (props) => {
             value={props.state.totalFat}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="sodium">Sodium:</label>
           <input
             id="sodium"
@@ -62,7 +62,7 @@ const IngredientForm = (props) => {
             value={props.state.sodium}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="totalCarbohydrates">TotalCarbohydrates:</label>
           <input
             id="totalCarbohydrates"
@@ -71,7 +71,7 @@ const IngredientForm = (props) => {
             value={props.state.totalCarbohydrates}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="sugars">Sugars:</label>
           <input
             id="sugars"
@@ -80,7 +80,7 @@ const IngredientForm = (props) => {
             value={props.state.sugars}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="protein">Protein:</label>
           <input
             id="protein"
@@ -89,7 +89,7 @@ const IngredientForm = (props) => {
             value={props.state.protein}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="price">Price:</label>
           <input
             id="price"
@@ -98,7 +98,7 @@ const IngredientForm = (props) => {
             value={props.state.price}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="inventory">Inventory:</label>
           <input
             id="inventory"
@@ -107,7 +107,7 @@ const IngredientForm = (props) => {
             value={props.state.inventory}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <label htmlFor="servingSize">ServingSize:</label>
           <input
             id="servingSize"
@@ -116,14 +116,13 @@ const IngredientForm = (props) => {
             value={props.state.servingSize}
             onChange={props.handleChange}
           />
-          <br/>
+          <br />
           <button type="submit">Submit</button>
         </div>
       </form>
     </div>
     )
 }
-
 
 
 export default IngredientForm;

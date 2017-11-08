@@ -1,14 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import {deletesCategory} from "../store/category";
-import CategoryForm from "./CategoryForm.jsx";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { deletesCategory } from '../store/category'
 
 class CategoryDeleter extends Component {
   constructor(props) {
-    super(props);
-    this.submitHandler =this.submitHandler.bind(this);
+    super(props)
+    this.submitHandler = this.submitHandler.bind(this)
   }
-
 
   submitHandler(evt){
     evt.preventDefault();
@@ -16,7 +14,6 @@ class CategoryDeleter extends Component {
   }
 
   render() {
-    const handleChange = this.handleChange;
     const submitHandler = this.submitHandler;
     const {categories} = this.props;
     return (
@@ -26,7 +23,7 @@ class CategoryDeleter extends Component {
           <div>
             <label htmlFor="categoryDelete">Category name:</label>
               <select name="categoryDelete">
-                {categories.map(category =>{
+                {categories.map(category => {
                   return (
                     <option key={category.id} value={category.id}>{category.category}</option>
                     )
@@ -50,4 +47,4 @@ const mapStateToProps = (state) => ({
   categories: state.category
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(CategoryDeleter);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryDeleter)

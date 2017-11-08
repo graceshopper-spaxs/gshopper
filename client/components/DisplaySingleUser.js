@@ -1,10 +1,9 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import OrderHistory from './OrderHistory'
-import CategoryPoster from './CategoryPoster.jsx'
-import DeleteCategory from './DeleteCategory.jsx'
-import ProductPoster from './ProductPoster'
+import CategoryPoster from './CategoryPoster';
+import DeleteCategory from './DeleteCategory';
+import ProductPoster from './ProductPoster';
 
 const DisplaySingleUser = (props) => {
     const { id, email, firstName, lastName, userType } = props.user

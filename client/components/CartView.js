@@ -1,10 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import SingleCartItem from './SingleCartItem'
 
 const cartView = (props) => {
-    if(!props.cartItems.length) return <div> Add Items! </div> 
+    if (!props.cartItems.length) return <div> Add Items! </div>
     //helper function to match items on cart to their corresponding product information
     function productInfo(itemOnCart) {
         return props.productInformation.find(product => +product.id === +itemOnCart.ingredientId)
@@ -28,10 +27,10 @@ const cartView = (props) => {
     return (
         <div>
             <ul>{mappedCartItems}</ul>
-            <p>{`Subtotal: $${subTotal}`}</p>                        
+            <p>{`Subtotal: $${subTotal}`}</p>
             {props.onCart && props.cartItems.length > 0 && <div>
                 <button>
-                    <Link to='/checkout'>
+                    <Link to="/checkout">
                         Checkout!
                 </Link>
                 </button>

@@ -16,26 +16,26 @@ async function seed () {
     User.create({firstName: 'cat', lastName: 'qin', email: 'cat@email.com', password: '123', userType: 'admin', payment: '1234567812345678'}),
   ])
 
-  
+
   const ingredients = await Promise.all([
-    Ingredient.create({name: 'foodone', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'} ),
-    Ingredient.create({name: 'foodtwo', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
-    Ingredient.create({name: 'foodthree', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
-    Ingredient.create({name: 'foodfour', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
-    Ingredient.create({name: 'food5', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
-    Ingredient.create({name: 'food6', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
-    Ingredient.create({name: 'food7', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
-    Ingredient.create({name: 'food8', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
-    Ingredient.create({name: 'food9', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
-    Ingredient.create({name: 'food100000', calories: 100,caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8,inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'})
+    Ingredient.create({name: 'foodone', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'} ),
+    Ingredient.create({name: 'foodtwo', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'foodthree', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'foodfour', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food5', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food6', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food7', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food8', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food9', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'}),
+    Ingredient.create({name: 'food100000', calories: 100, caloriesFromFat: 50, totalFat: 5, sodium: 50, totalCarbohydrates: 20, sugars: 7, protein: 15, price: 8, inventory: 100, servingSize: 5, image: 'http://www.pngmart.com/files/3/Potato-PNG-Clipart.png'})
   ])
-  
+
   const orders = await Promise.all([
-    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50, orderAmount: 3,address: '1234 dog st'}),
-    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50, orderAmount: 5, address: '1234 dog st',}),
-    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50, orderAmount: 34, address: '1234 dog st',}),
-    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50, orderAmount: 5, address: '1234 dog st',}),
-    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50, orderAmount: 60, address: '1234 dog st',})
+    Order.create({orderTime: Date.now(), userId: 1, orderPrice: 50, orderAmount: 3, address: '1234 dog st'}),
+    Order.create({orderTime: Date.now(), userId: 2, orderPrice: 50, orderAmount: 5, address: '1234 dog st'}),
+    Order.create({orderTime: Date.now(), userId: 3, orderPrice: 50, orderAmount: 34, address: '1234 dog st'}),
+    Order.create({orderTime: Date.now(), userId: 4, orderPrice: 50, orderAmount: 5, address: '1234 dog st'}),
+    Order.create({orderTime: Date.now(), userId: 5, orderPrice: 50, orderAmount: 60, address: '1234 dog st'})
   ])
 
   const orderingredient = await Promise.all([
@@ -46,8 +46,7 @@ async function seed () {
     OrderIngredient.create({id: 5, quantity: 3, orderId: 3, ingredientId: 5}),
     OrderIngredient.create({id: 6, quantity: 3, orderId: 4, ingredientId: 5}),
     OrderIngredient.create({id: 7, quantity: 3, orderId: 5, ingredientId: 5})
-  ])  
-
+  ])
 
 
   const reviews = await Promise.all([
@@ -67,7 +66,7 @@ async function seed () {
     .then(review => review.setIngredients(6)),
     Review.create({like: true, userId: 4})
     .then(review => review.setIngredients(1)),
-  ]) 
+  ])
 
 // checkout seeding
   console.log(`seeded ${users.length} users`)

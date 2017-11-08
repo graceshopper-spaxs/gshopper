@@ -6,8 +6,8 @@ const OrderIngredient = require('./orderIngredient')
 const Category = require('./category')
 const Review = require('./review')
 
- 
-// Order  -->  Ingredient: many to many relationship 
+
+// Order  -->  Ingredient: many to many relationship
 Order.belongsToMany(Ingredient, {through: OrderIngredient})
 Ingredient.belongsToMany(Order, {through: OrderIngredient})
 Ingredient.belongsToMany(Category, {through: 'IngredientCategory'})
@@ -22,7 +22,7 @@ User.hasMany(Order)
  * instead of: const User = require('../db/models/user')
  */
 
-//User --> Order: One to many relationship 
+//User --> Order: One to many relationship
 User.hasMany(Order)
 
 //User --> cart: One to many

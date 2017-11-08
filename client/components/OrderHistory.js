@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import CartView from './CartView'
-import {fetchOrders} from '../store'
+import { fetchOrders } from '../store'
 
 class OrderHistory extends Component {
 
@@ -10,7 +10,7 @@ class OrderHistory extends Component {
     }
 
     render() {
-        const {orders, productInformation} = this.props 
+        const {orders, productInformation} = this.props
         if (!orders.length) return <div> loading </div>
 
         //returns an array with all of the ingredient information for an order but not the actual ordered ingredient
@@ -25,15 +25,15 @@ class OrderHistory extends Component {
 
         const MappedOrderHistory = OrdersWithOrderItems.map((order, index) => {
             const orderTime = order[0].createdAt.split('T')
-            
-            return <li key={index}>
+
+            return (<li key={index}>
                 <h2>{`Order #${index + 1}`}</h2>
                 <h3>{`Order Date: ${orderTime[0]}`}</h3>
                 <CartView productInformation={productInformation} cartItems={order} onCart={false} />
-            </li>
+            </li>)
         })
 
-    
+
         return (
             <div>
                 <h1>Order History</h1>
@@ -45,14 +45,13 @@ class OrderHistory extends Component {
 
 const mapState = state => ({
     productInformation: state.ingredient,
-    orders : state.userOrders
+    orders: state.userOrders
 })
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
         getOrders() {
             const userId = ownProps.user.id
-            const thunk = fetchOrders(userId)
             dispatch(fetchOrders(userId))
         }
     }

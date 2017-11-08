@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux"
-import ProductForm from "./ProductForm";
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import ProductForm from './ProductForm';
 import { updatingIngredient } from '../store'
 
 class ProductEditor extends Component {
@@ -19,7 +19,7 @@ class ProductEditor extends Component {
 
   submitHandler(evt) {
     evt.preventDefault();
-    this.props.handleSubmit(this.state, evt);
+    this.props.handleSubmit(this.state)
   }
 
   render() {
@@ -41,7 +41,7 @@ class ProductEditor extends Component {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleSubmit(state, evt) {
+  handleSubmit(state) {
     dispatch(updatingIngredient(ownProps.ingredient.id, state));
   }
 });

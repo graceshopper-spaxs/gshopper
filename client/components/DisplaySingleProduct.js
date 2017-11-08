@@ -1,30 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import store from '../store';
-import { fetchSingleProduct } from '../store'
-import AddButton from "./button"
-import ProductEditor from './ProductEditor';
-import Review from './Review';
-import CategoryAssigner from './CategoryAssigner';
+import React from 'react'
+import { connect } from 'react-redux'
+import AddButton from './button'
+import ProductEditor from './ProductEditor'
+import Review from './Review'
+import CategoryAssigner from './CategoryAssigner'
 import CategoryUnassigner from './CategoryUnassigner'
 
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        allIngredients: state.ingredient,
-        ownProps: ownProps,
-        userType: state.user.userType
-    };
-}
-
-const findSelectValue = () => {
-    return document.getElementById("selectQuantity").value
-}
-
-
-
 class DisplaySingleProduct extends React.Component {
-
 
 
     constructor(props) {
@@ -51,10 +33,10 @@ class DisplaySingleProduct extends React.Component {
                     </p>
                     <p className="displayProductServing">
                         {theProduct.servingSize} grams per serving.
-            </p>
+                    </p>
                     <p className="displayProductCalories">
                         {theProduct.calories} calories.
-            </p>
+                    </p>
                     {
                         !theProduct.inventory &&
                         <h4>Out of Inventory</h4>
@@ -69,7 +51,7 @@ class DisplaySingleProduct extends React.Component {
                                 <option> 4</option>
                                 <option> 5</option>
                             </select>
-                            <AddButton buttonType={"ADD_ITEM"} buttonText={"Add"} ingredientId={ingredientId} quantity={+this.state.quantitySelected} />
+                            <AddButton buttonType={'ADD_ITEM'} buttonText={'Add'} ingredientId={ingredientId} quantity={+this.state.quantitySelected} />
                         </div>
                     }
 
@@ -85,9 +67,17 @@ class DisplaySingleProduct extends React.Component {
                 </div>
             )
         } else {
-            return <div> </div>
+            return <div />
         }
     }
 }
 
-export default connect(mapStateToProps)(DisplaySingleProduct);
+const mapStateToProps = (state, ownProps) => {
+    return {
+        allIngredients: state.ingredient,
+        ownProps: ownProps,
+        userType: state.user.userType
+    }
+}
+
+export default connect(mapStateToProps)(DisplaySingleProduct)
