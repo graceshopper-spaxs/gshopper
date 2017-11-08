@@ -41,24 +41,21 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
         //helper function to match items on cart to their corresponding product information
         const itemInformation = (itemOnCart) => (ingredients.find(ingredient => +ingredient.id === +itemOnCart.ingredientId))
-        
-        
-        const orderAmount = cart.reduce((prevQuant, currentItem)=>(prevQuant + currentItem.quantity),0) 
+        const orderAmount = cart.reduce((prevQuant, currentItem) => (prevQuant + currentItem.quantity), 0)
         const orderPrice = cart.reduce((cartPrice, currentItem) => {
             return cartPrice + itemInformation(currentItem).price * currentItem.quantity
         }, 0)
 
-        console.log(orderPrice)
         const order = {
             userId: user.id,
             address: fullAddress,
             cart: cart,
-            orderAmount: orderAmount,    // FIX
-            orderPrice: orderPrice // FIX
+            orderAmount: orderAmount,
+            orderPrice: orderPrice
         }
 
         dispatch(checkoutCart(order, ownProps.history))
     }
-}) 
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

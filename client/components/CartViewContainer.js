@@ -1,6 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
 import CartView from './CartView'
 
 const cartViewContainer = (props) => {
@@ -8,7 +7,7 @@ const cartViewContainer = (props) => {
     return (
         <div>
             <h1>Your Cart</h1>
-            <CartView productInformation={props.productInformation} cartItems={props.cartItems} onCart= {true}/>
+            <CartView productInformation={props.productInformation} cartItems={props.cartItems} onCart= {true} />
         </div>
     )
 }

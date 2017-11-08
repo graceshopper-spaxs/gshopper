@@ -32,7 +32,7 @@ class ProductPoster extends Component {
 
   submitHandler(evt) {
     evt.preventDefault();
-    this.props.handleSubmit(this.state, evt);
+    this.props.handleSubmit(this.state)
     this.setState({
       name: '',
       calories: 0,
@@ -66,8 +66,8 @@ class ProductPoster extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  handleSubmit(ingredient, evt) {
+const mapDispatchToProps = (dispatch) => ({
+  handleSubmit(ingredient) {
     dispatch(addNewIngredient(ingredient));
   }
 });

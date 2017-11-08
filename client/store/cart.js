@@ -35,6 +35,29 @@ export const emptyCart = () => ({ type: EMPTY_CART })
 
 export const checkoutItem = () => ({ type: CHECKOUT_CART })
 
+//Reducer helper functions
+const onCartQuantityAdd = (state, action) => {
+    return state.map(onCartItem => {
+        if (onCartItem.ingredientId === action.cartItem.ingredientId) {
+            action.cartItem.quantity += onCartItem.quantity;
+            return action.cartItem;
+        } else {return onCartItem;}
+    })
+}
+
+const onCartQuantityUpdate = (state, action) => {
+    return state.map(onCartItem => {
+        if (onCartItem.ingredientId === action.cartItem.ingredientId) {
+            return action.cartItem;
+        } else {return onCartItem;}
+    })
+}
+
+//Thunk helper function
+const routeDecision = (isLoggedIn) => {
+    if (isLoggedIn) return '/db';
+    else return ''
+}
 
 // Thunks
 
@@ -110,36 +133,3 @@ export default function (state = defaultCart, action) {
             return state
     }
 }
-
-//Reducer helper functions
-const onCartQuantityAdd = (state, action) => {
-    return state.map(onCartItem => {
-        if (onCartItem.ingredientId === action.cartItem.ingredientId) {
-            action.cartItem.quantity += onCartItem.quantity;
-            return action.cartItem;
-        } else return onCartItem;
-    })
-}
-
-const onCartQuantityUpdate = (state, action) => {
-    return state.map(onCartItem => {
-        if (onCartItem.ingredientId === action.cartItem.ingredientId) {
-            return action.cartItem;
-        } else return onCartItem;
-    })
-}
-
-//Thunk helper function
-
-const routeDecision = (isLoggedIn) => {
-    if (isLoggedIn) return "/db";
-    else return ""
-}
-
-
-
-
-
-
-
-

@@ -1,9 +1,7 @@
 import { expect } from 'chai'
-import { addItem, removeItem, updateItem } from './cart'
+import cartReducer, { addItem, removeItem, updateItem } from './cart'
 import configureMockStore from 'redux-mock-store'
-import {createStore, combineReducers, applyMiddleware} from 'redux'
-import cartReducer from './cart'
-
+import { createStore } from 'redux'
 
 const middlewares = []
 const mockStore = configureMockStore(middlewares)
@@ -18,7 +16,7 @@ describe('Cart Reducer', () => {
 
 
     describe('Add item', () => {
-        
+
         it('adds an item to the cart', () => {
             const action = addItem(1, 2)
             store.dispatch(action)
@@ -33,9 +31,9 @@ describe('Cart Reducer', () => {
         })
     })
 
-    describe('Remove item', ()=> {
+    describe('Remove item', () => {
         it('removes an item from the cart', () => {
-            const addItemAction = addItem(1,2)
+            const addItemAction = addItem(1, 2)
             const removeItemAction = removeItem(1)
             store.dispatch(addItemAction)
             store.dispatch(removeItemAction)
@@ -43,10 +41,10 @@ describe('Cart Reducer', () => {
         })
     })
 
-    describe('Update item', ()=> {
+    describe('Update item', () => {
         it('Updates the quantity of an item from the cart', () => {
-            const addItemAction = addItem(1,2)
-            const updateItemAction = updateItem(1,7)
+            const addItemAction = addItem(1, 2)
+            const updateItemAction = updateItem(1, 7)
             store.dispatch(addItemAction)
             expect(store.getState()[0].quantity).to.be.equal(2)
             store.dispatch(updateItemAction)

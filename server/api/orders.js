@@ -24,9 +24,9 @@ router.post('/', (req, res, next) => {
         .catch(next)
 })
 
-router.get('/users/:userId', (req,res,next) => {
+router.get('/users/:userId', (req, res, next) => {
     const userId = req.params.userId
-    Order.findAll({where: {userId}, include:[{all:true}]})
+    Order.findAll({where: {userId}, include: [{all: true}]})
     .then(orders => res.json(orders))
 })
 // Get one order
@@ -50,19 +50,17 @@ router.get('/', (req, res, next) => {
 })
 
 //get user orders
-router.put('/user/:orderid',(req, res, next) => {
+router.put('/:orderid', (req, res, next) => {
     const newStatus = req.body.status;
     const orderId = req.params.orderid;
     Order.findById(orderId)
     .then(order => {
-        order.status = newStatus || "created";
+        order.status = newStatus || 'created';
         order.save({fields: ['status']})
         .then( () => {
             return Order.findById(orderId)
-            .then(order => res.json(order))
+            .then(oneOrder => res.json(oneOrder))
         })
     })
-    .catch(next)    
+    .catch(next)
 })
-
-

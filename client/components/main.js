@@ -12,7 +12,7 @@ import CartForNav from './CartForNav'
  */
 const Main = (props) => {
   const { children, handleClick, isLoggedIn, userType } = props
-
+  console.log('philip', userType)
   return (
     <div>
       <h1>CALORIE CART</h1>
@@ -24,8 +24,16 @@ const Main = (props) => {
               <Link to="/home">Home</Link>
               <Link to="/ingredients">Ingredients</Link>
               <Link to="/user">User</Link>
-              <Link to ="/orderhistory">Order History</Link>
+              <Link to="/orderhistory">Order History</Link>
               <a href="#" onClick={handleClick}>Logout</a>
+              {
+                userType === 'admin' ?
+                  <div>
+                    <Link to="/product-post">Post An Ingredient</Link>
+                    <Link to="/view-all-orders">View All Orders</Link>
+                  </div>
+                  : <div />
+              }
             </div>
             : <div>
               {/* The navbar will show these links before you log in */}

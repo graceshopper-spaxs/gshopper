@@ -25,12 +25,12 @@ router.get('/', (req, res, next) => {
                 .catch(next)
             req.session.cart = [];
         } else {
-            Cart.findAll({where:{userId, inCart:true}})
-            .then(result=>res.json(result))
+            Cart.findAll({where: {userId, inCart: true}})
+            .then(result => res.json(result))
             req.session.cart = [];
         }
-        
-    } else res.json(req.session.cart);
+
+    } else {res.json(req.session.cart);}
 });
 
 router.post('/', (req, res, next) => {
@@ -88,7 +88,7 @@ router.put('/:userId', (req, res, next) => {
             userId
         }
     })
-    .then(() => res.send("Items are updated"))
+    .then(() => res.send('Items are updated'))
     .catch(next)
 })
 
@@ -120,7 +120,7 @@ const sessionCartQuantityAdd = (sessionCart, add) => {
         if (onCartItem.ingredientId === add.ingredientId) {
             add.quantity += onCartItem.quantity;
             return add;
-        } else return onCartItem;
+        } else {return onCartItem;}
     })
 }
 
@@ -128,7 +128,7 @@ const sessionCartQuantityUpdate = (sessionCart, update) => {
     return sessionCart.map(onCartItem => {
         if (onCartItem.ingredientId === update.ingredientId) {
             return update;
-        } else return onCartItem;
+        } else {return onCartItem;}
     })
 }
 

@@ -23,7 +23,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   console.log('Google client ID / secret not found. Skipping Google OAuth.')
 
 } else {
-  console.log("YES! I SAW YOUR CLIENT ID!")
+  console.log('YES! I SAW YOUR CLIENT ID!')
   const googleConfig = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
