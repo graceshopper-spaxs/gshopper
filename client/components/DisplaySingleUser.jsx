@@ -1,7 +1,7 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
-// import AddButton from "./button"
+import { Route, Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import OrderHistory from './OrderHistory'
 import CategoryPoster from './CategoryPoster.jsx'
 import DeleteCategory from './DeleteCategory.jsx'
 import ProductPoster from './ProductPoster'
@@ -16,6 +16,7 @@ const DisplaySingleUser = (props) => {
             <p>email: {email}</p>
             <p>user image</p>
             <p>order history</p>
+            <Link to={`/orderhistory`}>Order History</Link>
             {
                 userType === 'admin' &&
                 <div>
@@ -24,7 +25,6 @@ const DisplaySingleUser = (props) => {
                     <ProductPoster />
                 </div>
             }
-
         </div>
     )
 }

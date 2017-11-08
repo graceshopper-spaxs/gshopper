@@ -60,8 +60,7 @@ class ProductPoster extends Component {
           <ProductForm
           handleChange={handleChange}
           submitHandler={submitHandler}
-          state={this.state}
-        />
+          state={this.state} />
       </div>
     )
   }

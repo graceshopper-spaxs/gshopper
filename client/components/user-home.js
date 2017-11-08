@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -12,6 +13,14 @@ export const UserHome = (props) => {
       <div>
         <h3>Welcome, {firstName}!</h3>
       </div>
+      {
+        props.user.userType === 'admin' &&
+        <div>
+          <label>Admin Functionality:</label>
+          <Link to="/product-post">Post An Ingredient</Link>
+          <Link to="/view-all-orders">View All Orders</Link>
+        </div>
+      }
     </div>
   )
 }

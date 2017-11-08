@@ -4,12 +4,17 @@ import { Router } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, DisplayAllProducts} from './components'
+import { Main, Login, Signup, UserHome, DisplayAllProducts } from './components'
 import DisplaySingleUser from './components/DisplaySingleUser.jsx'
 import DisplaySingleProduct from './components/DisplaySingleProduct'
 import { me, fetchIngredients, fetchSessionCart, fetchCategories } from './store'
 import Checkout from './components/Checkout'
 import CartViewContainer from './components/CartViewContainer'
+import OrderHistory from './components/OrderHistory'
+import ProductPoster from './components/ProductPoster'
+import ViewAllOrders from './components/ViewAllOrders'
+import OneOrder from './components/OneOrder'
+
 import StatefulIngredients from './components/StatefulIngredients';
 /**
  * COMPONENT
@@ -20,7 +25,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn, allIngredients } = this.props
+    const { isLoggedIn, allIngredients, orders, user} = this.props
 
     return (
       <Router history={history}>
@@ -36,12 +41,16 @@ class Routes extends Component {
 
             {
               isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/home" component={UserHome} />
-                  <Route path="/user" component={DisplaySingleUser} />
-                  <Route path="/checkout" component={Checkout} />
-                </Switch>
+              <Switch>
+                {/* Routes placed here are only available after logging in */}
+                <Route path="/home" component={UserHome} />
+                <Route path="/user" component={DisplaySingleUser} />
+                <Route exact path="/orderhistory" render={()=>(<OrderHistory user={user}/>)}/>
+                <Route path="/orders/:orderId" component={OneOrder} />
+                <Route path="/checkout" component={Checkout} />
+                <Route path="/product-post" component={ProductPoster} />
+                <Route path="/view-all-orders" component={ViewAllOrders} />
+              </Switch>
             }
 
             {/* Displays our Login component as a fallback */}
@@ -61,7 +70,8 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    allIngredients: state.ingredient
+    allIngredients: state.ingredient,
+    user : state.user
   }
 }
 

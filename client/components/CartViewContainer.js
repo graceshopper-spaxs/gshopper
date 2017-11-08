@@ -5,8 +5,11 @@ import CartView from './CartView'
 
 const cartViewContainer = (props) => {
 
-    return(
-        <CartView productInformation={props.productInformation} cartItems={props.cartItems}/>
+    return (
+        <div>
+            <h1>Your Cart</h1>
+            <CartView productInformation={props.productInformation} cartItems={props.cartItems} onCart= {true}/>
+        </div>
     )
 }
 
