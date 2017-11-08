@@ -102,7 +102,7 @@ export const checkoutCart = ({ userId, orderAmount, orderPrice, address, cart },
                 dispatch(emptyCart())
             })
             .then(() => {
-                history.push('/home')
+                history.push('/orderhistory')
             })
             .catch(err => console.log(err))
     }
