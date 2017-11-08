@@ -9,6 +9,7 @@ const FilterSearchInput = (props) => {
   return (
     <form onSubmit={handleSubmit} style={{marginTop: '20px'}}>
       <input
+        name = "filterSearchInput"
         onChange={handleChange}
         value={inputValue}
         placeholder="Enter Ingredient name"

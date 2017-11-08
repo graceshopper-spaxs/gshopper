@@ -5,6 +5,8 @@ import { fetchSingleProduct } from '../store'
 import AddButton from "./button"
 import ProductEditor from './ProductEditor';
 import Review from './Review';
+import CategoryAssigner from './CategoryAssigner';
+import CategoryUnassigner from './CategoryUnassigner'
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -75,9 +77,11 @@ class DisplaySingleProduct extends React.Component {
                         this.props.userType === 'admin' &&
                         <div>
                             <ProductEditor ingredient={theProduct} />
+                            <CategoryAssigner ingredient={theProduct} />
+                            <CategoryUnassigner ingredient={theProduct} />
                         </div>
                     }
-                    <Review /> 
+                    <Review />
                 </div>
             )
         } else {

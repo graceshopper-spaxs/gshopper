@@ -2,8 +2,6 @@ import React from 'react'
 import { Link, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-// import ProductPoster from './ProductPoster'
-// import ViewAllOrders from './ViewAllOrders'
 
 /**
  * COMPONENT
